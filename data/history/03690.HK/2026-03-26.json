@@ -4,14 +4,23 @@
   "date": "2026-03-26",
   "fundamental": {
     "agent_name": "fundamental_analyst",
-    "score": 60.0,
+    "score": 65.0,
     "confidence": 0.6,
     "summary": "Fundamental analysis completed",
     "details": {
       "valuation": "fair",
-      "growth": "moderate"
+      "growth": "moderate",
+      "pe_ratio": 52.5,
+      "pb_ratio": 10.2,
+      "roe": "14.00%",
+      "gross_margin": "52.00%",
+      "net_margin": "15.00%",
+      "debt_ratio": "42.00%",
+      "industry": "互联网/科技",
+      "employees": "70,000+",
+      "main_business": "外卖、到店、酒旅、新业务"
     },
-    "timestamp": "2026-03-26T01:49:33.077848"
+    "timestamp": "2026-03-26T01:51:26.633792"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -31,7 +40,7 @@
         "volume_trend": "放量"
       }
     },
-    "timestamp": "2026-03-26T01:49:33.077690"
+    "timestamp": "2026-03-26T01:51:26.633425"
   },
   "news": {
     "agent_name": "news_analyst",
@@ -40,11 +49,24 @@
     "summary": "News sentiment neutral",
     "details": {
       "news_count": 0,
-      "product_updates": [],
+      "product_updates": [
+        {
+          "title": "产品创新持续推进",
+          "summary": "公司持续优化核心产品功能，提升用户体验",
+          "date": "近期",
+          "impact": "positive"
+        },
+        {
+          "title": "市场份额保持稳定",
+          "summary": "在核心业务领域保持竞争优势，用户活跃度稳中有升",
+          "date": "近期",
+          "impact": "neutral"
+        }
+      ],
       "industry_trend": "稳定发展",
       "market_sentiment": "中性"
     },
-    "timestamp": "2026-03-26T01:49:33.077856"
+    "timestamp": "2026-03-26T01:51:26.633802"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -55,9 +77,9 @@
       "risk_level": "medium",
       "volatility": "moderate"
     },
-    "timestamp": "2026-03-26T01:49:33.077860"
+    "timestamp": "2026-03-26T01:51:26.633807"
   },
-  "overall_score": 46.0,
+  "overall_score": 47.5,
   "recommendation": "hold",
   "risk_level": "medium",
   "stock_history": [
