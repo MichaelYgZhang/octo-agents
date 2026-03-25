@@ -198,6 +198,17 @@
                         </p>
                     </div>
 
+                    <!-- 多维度评分雷达图 -->
+                    <div class="white-box">
+                        <h4>📊 多维度评分雷达图</h4>
+                        <div id="radar-chart" style="height: 400px; margin-top: 20px;"></div>
+                        <div style="text-align: center; margin-top: 15px;">
+                            <span style="color: #6b7280; font-size: 14px;">
+                                综合得分: <strong style="color: #667eea; font-size: 20px;">{{ currentStock.overall_score.toFixed(1) }}</strong> / 100
+                            </span>
+                        </div>
+                    </div>
+
                     <!-- 产品动态 -->
                     <div class="white-box" v-if="currentStock.news.details.product_updates">
                         <h4>🚀 最近产品动态</h4>
@@ -505,6 +516,7 @@
                     timeRange: 7,
                     chart: null,
                     accuracyChart: null,
+                    radarChart: null,
                     loading: true,
                     currentDate: new Date().toISOString().split('T')[0]
                 };
@@ -544,6 +556,8 @@
                     this.renderChart();
                     if (this.activeTab === 'history') {
                         this.$nextTick(() => this.renderAccuracyChart());
+                    } else if (this.activeTab === 'prediction') {
+                        this.$nextTick(() => this.renderRadarChart());
                     }
                 },
                 
@@ -670,7 +684,110 @@
                     
                     this.accuracyChart.setOption(option);
                 },
-                
+
+                renderRadarChart() {
+                    if (!this.currentStock) return;
+
+                    let chartDom = document.getElementById('radar-chart');
+                    if (!chartDom) return;
+
+                    if (!this.radarChart) {
+                        this.radarChart = echarts.init(chartDom);
+                    }
+
+                    const option = {
+                        title: {
+                            text: '多维度分析评分',
+                            left: 'center',
+                            top: 10,
+                            textStyle: {
+                                color: '#667eea',
+                                fontSize: 16
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: params => {
+                                const data = params.data;
+                                let result = `<strong>${data.name}</strong><br/>`;
+                                data.value.forEach((val, idx) => {
+                                    const indicator = option.radar.indicator[idx];
+                                    result += `${indicator.name}: <strong style="color: #667eea;">${val.toFixed(1)}</strong><br/>`;
+                                });
+                                return result;
+                            }
+                        },
+                        radar: {
+                            center: ['50%', '55%'],
+                            radius: '65%',
+                            shape: 'polygon',
+                            splitNumber: 5,
+                            axisName: {
+                                color: '#667eea',
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            },
+                            splitArea: {
+                                areaStyle: {
+                                    color: ['rgba(102, 126, 234, 0.05)', 'rgba(102, 126, 234, 0.1)',
+                                            'rgba(102, 126, 234, 0.15)', 'rgba(102, 126, 234, 0.2)',
+                                            'rgba(102, 126, 234, 0.25)']
+                                }
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: 'rgba(102, 126, 234, 0.3)'
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: 'rgba(102, 126, 234, 0.3)'
+                                }
+                            },
+                            indicator: [
+                                { name: '技术分析', max: 100, color: '#667eea' },
+                                { name: '基本面分析', max: 100, color: '#667eea' },
+                                { name: '舆情分析', max: 100, color: '#667eea' },
+                                { name: '风险控制', max: 100, color: '#667eea' }
+                            ]
+                        },
+                        series: [{
+                            name: '评分详情',
+                            type: 'radar',
+                            data: [{
+                                value: [
+                                    this.currentStock.quant.score,
+                                    this.currentStock.fundamental.score,
+                                    this.currentStock.news.score,
+                                    100 - this.currentStock.risk.score  // 风险分数反转（风险越低越好）
+                                ],
+                                name: this.currentStock.name,
+                                areaStyle: {
+                                    color: {
+                                        type: 'linear',
+                                        x: 0, y: 0, x2: 0, y2: 1,
+                                        colorStops: [
+                                            { offset: 0, color: 'rgba(102, 126, 234, 0.8)' },
+                                            { offset: 1, color: 'rgba(118, 75, 162, 0.3)' }
+                                        ]
+                                    }
+                                },
+                                lineStyle: {
+                                    color: '#667eea',
+                                    width: 3
+                                },
+                                itemStyle: {
+                                    color: '#667eea',
+                                    borderColor: '#fff',
+                                    borderWidth: 2
+                                }
+                            }]
+                        }]
+                    };
+
+                    this.radarChart.setOption(option);
+                },
+
                 getLatestPrice(stock) {
                     const history = this.stockHistory[stock.code] || [];
                     return history.length ? history[history.length - 1].close : 0;
@@ -750,6 +867,8 @@
                         this.$nextTick(() => this.renderChart());
                     } else if (newTab === 'history') {
                         this.$nextTick(() => this.renderAccuracyChart());
+                    } else if (newTab === 'prediction') {
+                        this.$nextTick(() => this.renderRadarChart());
                     }
                 }
             }
