@@ -35,6 +35,10 @@
         <div class="header">
             <h1>{{ title }}</h1>
             <p>{{ subtitle }}</p>
+            <div style="margin-top: 10px; font-size: 14px; opacity: 0.8;">
+                📊 数据来源: <strong>AkShare API</strong> (港股实时数据) |
+                更新时间: {{ stocks.length > 0 ? stocks[0].date : '-' }}
+            </div>
         </div>
         
         <div class="container">
@@ -82,6 +86,13 @@
                             <span class="metric-value">{{ stock.quant.details.trend }}</span>
                         </div>
                     </div>
+
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; font-size: 12px; color: #909399;">
+                        <strong>📡 数据来源:</strong><br>
+                        • 股价数据: <a href="https://akshare.akfamily.xyz" target="_blank" style="color: #667eea;">AkShare API</a> (港股实时行情)<br>
+                        • 数据范围: 最近7个交易日<br>
+                        • 更新时间: {{ stock.date }}
+                    </div>
                     
                     <div class="detail-section">
                         <h3>基本面分析</h3>
@@ -118,12 +129,32 @@
             methods: {
                 async fetchData() {
                     try {
-                        const response = await axios.get('../data/latest.json');
+                        // Try multiple paths for flexibility
+                        const paths = [
+                            '../data/latest.json',
+                            './data/latest.json',
+                            '/data/latest.json'
+                        ];
+
+                        let response = null;
+                        for (const path of paths) {
+                            try {
+                                response = await axios.get(path);
+                                if (response.data) break;
+                            } catch (e) {
+                                continue;
+                            }
+                        }
+
+                        if (!response || !response.data) {
+                            throw new Error('无法从任何路径加载数据');
+                        }
+
                         this.stocks = response.data;
                         this.loading = false;
                     } catch (err) {
                         console.error('Failed to fetch data:', err);
-                        this.error = '无法加载分析结果，请确保已运行 python3 run_local.py';
+                        this.error = '无法加载分析结果，请确保已运行 python3 run_local.py 并从项目根目录启动服务器';
                         this.loading = false;
                     }
                 },
