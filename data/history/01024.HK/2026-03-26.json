@@ -4,23 +4,23 @@
   "date": "2026-03-26",
   "fundamental": {
     "agent_name": "fundamental_analyst",
-    "score": 60.0,
+    "score": 65.0,
     "confidence": 0.6,
     "summary": "Fundamental analysis completed",
     "details": {
       "valuation": "fair",
       "growth": "moderate",
-      "pe_ratio": 37.5,
+      "pe_ratio": 52.5,
       "pb_ratio": 10.2,
       "roe": "14.00%",
-      "gross_margin": "37.00%",
-      "net_margin": "10.00%",
-      "debt_ratio": "27.00%",
+      "gross_margin": "52.00%",
+      "net_margin": "15.00%",
+      "debt_ratio": "42.00%",
       "industry": "互联网/短视频",
       "employees": "30,000+",
       "main_business": "短视频、直播、电商"
     },
-    "timestamp": "2026-03-26T02:04:52.165291"
+    "timestamp": "2026-03-26T02:16:51.111633"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -40,7 +40,7 @@
         "volume_trend": "缩量"
       }
     },
-    "timestamp": "2026-03-26T02:04:52.165256"
+    "timestamp": "2026-03-26T02:16:51.111608"
   },
   "news": {
     "agent_name": "news_analyst",
@@ -116,7 +116,7 @@
         }
       ]
     },
-    "timestamp": "2026-03-26T02:04:52.165431"
+    "timestamp": "2026-03-26T02:16:51.111645"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -179,9 +179,9 @@
         ]
       }
     },
-    "timestamp": "2026-03-26T02:04:52.165447"
+    "timestamp": "2026-03-26T02:16:51.111650"
   },
-  "overall_score": 58.5,
+  "overall_score": 60.0,
   "recommendation": "hold",
   "risk_level": "medium",
   "stock_history": [
