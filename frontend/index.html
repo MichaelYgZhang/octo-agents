@@ -846,46 +846,45 @@
                                 </a>
                             </p>
                         </div>
-                    </div>
-                </div>
             </div>
 
             <!-- 历史预测Tab -->
             <div v-else-if="activeTab === 'history'" class="card">
-                <h2 style="color: #667eea; margin-bottom: 25px;">📊 历史预测准确率</h2>
-                
-                <div v-if="currentStock" class="history-item">
-                    <h3 style="color: #1f2937; margin-bottom: 15px;">
-                        {{ currentStock.name }} ({{ currentStock.code }})
-                    </h3>
-                    
-                    <div class="metric-row">
-                        <span class="metric-label">预测次数</span>
-                        <span class="metric-value">{{ getPredictionCount(currentStock) }}</span>
-                    </div>
-                    <div class="metric-row">
-                        <span class="metric-label">准确率</span>
-                        <span class="metric-value">{{ (getAccuracy(currentStock) * 100).toFixed(1) }}%</span>
-                    </div>
-                    <div class="metric-row">
-                        <span class="metric-label">平均收益</span>
-                        <span class="metric-value">{{ (getAverageReturn(currentStock) * 100).toFixed(2) }}%</span>
-                    </div>
-                    
-                    <!-- 准确率图表 -->
-                    <div id="accuracy-chart" class="chart-container" style="height: 300px; margin-top: 20px;"></div>
-                    
-                    <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 8px;">
-                        <h4 style="color: #6b7280; margin-bottom: 10px;">📈 历史预测详情</h4>
-                        <p style="color: #6b7280; font-size: 14px;">
-                            * 完整历史预测功能需要多次运行分析生成历史数据
-                        </p>
-                        <p style="color: #6b7280; font-size: 14px; margin-top: 8px;">
-                            当前系统已具备预测跟踪能力，每次分析结果都会保存到历史记录
-                        </p>
+                <div v-if="currentStock">
+                    <h2 style="color: #667eea; margin-bottom: 25px;">📊 历史预测准确率</h2>
+
+                    <div class="history-item">
+                        <h3 style="color: #1f2937; margin-bottom: 15px;">
+                            {{ currentStock.name }} ({{ currentStock.code }})
+                        </h3>
+
+                        <div class="metric-row">
+                            <span class="metric-label">预测次数</span>
+                            <span class="metric-value">{{ getPredictionCount(currentStock) }}</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">准确率</span>
+                            <span class="metric-value">{{ (getAccuracy(currentStock) * 100).toFixed(1) }}%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">平均收益</span>
+                            <span class="metric-value">{{ (getAverageReturn(currentStock) * 100).toFixed(2) }}%</span>
+                        </div>
+
+                        <!-- 准确率图表 -->
+                        <div id="accuracy-chart" class="chart-container" style="height: 300px; margin-top: 20px;"></div>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 8px;">
+                            <h4 style="color: #6b7280; margin-bottom: 10px;">📈 历史预测详情</h4>
+                            <p style="color: #6b7280; font-size: 14px;">
+                                * 完整历史预测功能需要多次运行分析生成历史数据
+                            </p>
+                            <p style="color: #6b7280; font-size: 14px; margin-top: 8px;">
+                                当前系统已具备预测跟踪能力，每次分析结果都会保存到历史记录
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
