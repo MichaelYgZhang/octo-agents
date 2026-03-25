@@ -183,7 +183,7 @@
             <div v-else-if="activeTab === 'prediction'" class="card">
                 <div v-if="currentStock">
                     <h2 style="color: #667eea; margin-bottom: 25px;">🎯 AI预测模型白盒化展示</h2>
-                    
+
                     <!-- 预测结果 -->
                     <div class="prediction-section">
                         <h3 style="color: #667eea; margin-bottom: 15px;">预测结论</h3>
@@ -191,17 +191,34 @@
                             预测价格: ¥{{ predictPrice(currentStock).toFixed(2) }}
                         </div>
                         <p style="text-align: center; font-size: 18px;">
-                            预测涨跌幅: 
+                            预测涨跌幅:
                             <span :style="{color: predictPrice(currentStock) > getLatestPrice(currentStock) ? '#f56c6c' : '#67c23a', fontWeight: 'bold'}">
                                 {{ ((predictPrice(currentStock) - getLatestPrice(currentStock)) / getLatestPrice(currentStock) * 100).toFixed(2) }}%
                             </span>
                         </p>
                     </div>
-                    
+
+                    <!-- 产品动态 -->
+                    <div class="white-box" v-if="currentStock.news.details.product_updates">
+                        <h4>🚀 最近产品动态</h4>
+                        <div v-for="(update, idx) in currentStock.news.details.product_updates" :key="idx"
+                             style="padding: 15px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px; border-left: 4px solid #667eea;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: bold; color: #1f2937;">{{ update.title }}</span>
+                                <span class="accuracy-badge"
+                                      :class="update.impact === 'positive' ? 'accuracy-high' : 'accuracy-medium'">
+                                    {{ update.impact === 'positive' ? '积极' : '中性' }}
+                                </span>
+                            </div>
+                            <p style="color: #6b7280; font-size: 14px; margin-top: 8px;">{{ update.summary }}</p>
+                            <p style="color: #9ca3af; font-size: 12px; margin-top: 5px;">{{ update.date }}</p>
+                        </div>
+                    </div>
+
                     <!-- 预测依据 -->
                     <div class="white-box">
                         <h4>📐 预测依据与权重</h4>
-                        
+
                         <div class="prediction-factor">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="font-weight: bold;">技术分析 (MA/RSI/趋势)</span>
@@ -211,10 +228,16 @@
                                 <div>• 信号类型: {{ currentStock.quant.details.signal }}</div>
                                 <div>• MA5趋势: {{ currentStock.quant.details.trend }}</div>
                                 <div>• RSI值: {{ currentStock.quant.details.rsi.toFixed(2) }}</div>
+                                <div v-if="currentStock.quant.details.volume_analysis">
+                                    • 成交量趋势: {{ currentStock.quant.details.volume_analysis.volume_trend }}
+                                </div>
+                                <div v-if="currentStock.quant.details.volume_analysis">
+                                    • 平均成交量: {{ formatVolume(currentStock.quant.details.volume_analysis.avg_volume) }}
+                                </div>
                                 <div>• 评分: {{ currentStock.quant.score.toFixed(1) }}/100</div>
                             </div>
                         </div>
-                        
+
                         <div class="prediction-factor">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="font-weight: bold;">基本面分析</span>
@@ -223,10 +246,31 @@
                             <div style="margin-top: 10px; color: #6b7280; font-size: 14px;">
                                 <div>• 估值水平: {{ currentStock.fundamental.details.valuation }}</div>
                                 <div>• 成长性: {{ currentStock.fundamental.details.growth }}</div>
+                                <div v-if="currentStock.fundamental.details.pe_ratio">
+                                    • 市盈率(PE): {{ currentStock.fundamental.details.pe_ratio.toFixed(2) }}
+                                </div>
+                                <div v-if="currentStock.fundamental.details.pb_ratio">
+                                    • 市净率(PB): {{ currentStock.fundamental.details.pb_ratio.toFixed(2) }}
+                                </div>
+                                <div v-if="currentStock.fundamental.details.roe">
+                                    • 净资产收益率(ROE): {{ currentStock.fundamental.details.roe }}
+                                </div>
+                                <div v-if="currentStock.fundamental.details.gross_margin">
+                                    • 毛利率: {{ currentStock.fundamental.details.gross_margin }}
+                                </div>
+                                <div v-if="currentStock.fundamental.details.net_margin">
+                                    • 净利率: {{ currentStock.fundamental.details.net_margin }}
+                                </div>
+                                <div v-if="currentStock.fundamental.details.debt_ratio">
+                                    • 资产负债率: {{ currentStock.fundamental.details.debt_ratio }}
+                                </div>
+                                <div v-if="currentStock.fundamental.details.industry">
+                                    • 行业: {{ currentStock.fundamental.details.industry }}
+                                </div>
                                 <div>• 评分: {{ currentStock.fundamental.score.toFixed(1) }}/100</div>
                             </div>
                         </div>
-                        
+
                         <div class="prediction-factor">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="font-weight: bold;">舆情分析</span>
@@ -235,9 +279,15 @@
                             <div style="margin-top: 10px; color: #6b7280; font-size: 14px;">
                                 <div>• 评分: {{ currentStock.news.score.toFixed(1) }}/100</div>
                                 <div>• 置信度: {{ (currentStock.news.confidence * 100).toFixed(0) }}%</div>
+                                <div v-if="currentStock.news.details.industry_trend">
+                                    • 行业趋势: {{ currentStock.news.details.industry_trend }}
+                                </div>
+                                <div v-if="currentStock.news.details.market_sentiment">
+                                    • 市场情绪: {{ currentStock.news.details.market_sentiment }}
+                                </div>
                             </div>
                         </div>
-                        
+
                         <div class="prediction-factor">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="font-weight: bold;">风险分析</span>
@@ -595,6 +645,16 @@
                 getRecommendationText(rec) {
                     const map = { buy: '买入', hold: '持有', sell: '卖出' };
                     return map[rec] || rec;
+                },
+
+                formatVolume(volume) {
+                    if (!volume) return 'N/A';
+                    if (volume >= 100000000) {
+                        return (volume / 100000000).toFixed(2) + '亿';
+                    } else if (volume >= 10000) {
+                        return (volume / 10000).toFixed(2) + '万';
+                    }
+                    return volume.toString();
                 }
             },
             watch: {

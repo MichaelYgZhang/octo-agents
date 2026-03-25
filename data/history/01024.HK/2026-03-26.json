@@ -11,7 +11,7 @@
       "valuation": "fair",
       "growth": "moderate"
     },
-    "timestamp": "2026-03-26T01:38:20.332205"
+    "timestamp": "2026-03-26T01:49:33.078703"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -22,17 +22,29 @@
       "signal": "buy",
       "ma5": 53.339999999999996,
       "rsi": 29.96941896024464,
-      "trend": "up"
+      "trend": "up",
+      "volume_analysis": {
+        "avg_volume": 34867092.166666664,
+        "max_volume": 81408157,
+        "min_volume": 10994774,
+        "avg_amount": 2142947773.1,
+        "volume_trend": "缩量"
+      }
     },
-    "timestamp": "2026-03-26T01:38:20.332197"
+    "timestamp": "2026-03-26T01:49:33.078691"
   },
   "news": {
     "agent_name": "news_analyst",
-    "score": 50.0,
-    "confidence": 0.0,
-    "summary": "No news data available",
-    "details": {},
-    "timestamp": "2026-03-26T01:38:20.332208"
+    "score": 55.0,
+    "confidence": 0.5,
+    "summary": "News sentiment neutral",
+    "details": {
+      "news_count": 0,
+      "product_updates": [],
+      "industry_trend": "稳定发展",
+      "market_sentiment": "中性"
+    },
+    "timestamp": "2026-03-26T01:49:33.078707"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -43,9 +55,9 @@
       "risk_level": "medium",
       "volatility": "moderate"
     },
-    "timestamp": "2026-03-26T01:38:20.332210"
+    "timestamp": "2026-03-26T01:49:33.078710"
   },
-  "overall_score": 57.25,
+  "overall_score": 58.5,
   "recommendation": "hold",
   "risk_level": "medium",
   "stock_history": [

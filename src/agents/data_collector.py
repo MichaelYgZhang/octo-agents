@@ -24,12 +24,29 @@ class DataCollector(BaseAgent):
             self.logger.info(f"Collecting data for {code}")
 
             stock_history = self.stock_provider.fetch_stock_history(code, days=days)
+            company_profile = self.stock_provider.fetch_stock_profile(code)
+            financial_indicators = self.stock_provider.fetch_financial_indicator(code)
+
+            # Calculate volume statistics
+            volume_stats = {}
+            if stock_history:
+                volumes = [h["volume"] for h in stock_history]
+                amounts = [h["amount"] for h in stock_history]
+                volume_stats = {
+                    "avg_volume": sum(volumes) / len(volumes) if volumes else 0,
+                    "max_volume": max(volumes) if volumes else 0,
+                    "min_volume": min(volumes) if volumes else 0,
+                    "avg_amount": sum(amounts) / len(amounts) if amounts else 0,
+                    "total_amount": sum(amounts),
+                }
 
             if stock_history:
                 results[code] = {
                     "code": code,
                     "stock_history": stock_history,
-                    "financial_data": {},
+                    "financial_data": financial_indicators,
+                    "company_profile": company_profile,
+                    "volume_stats": volume_stats,
                     "news_items": [],
                 }
 

@@ -17,6 +17,7 @@ class QuantAnalyst(BaseAgent):
     def analyze(self, data: Dict[str, Any]) -> AgentResult:
         """Perform quantitative analysis"""
         stock_history = data.get("stock_history", [])
+        volume_stats = data.get("volume_stats", {})
 
         if len(stock_history) < 5:
             return AgentResult(
@@ -40,6 +41,16 @@ class QuantAnalyst(BaseAgent):
         # Calculate score
         score = self.calculate_score(indicators, signal)
 
+        # Volume analysis
+        volumes = df["volume"].tolist()
+        volume_analysis = {
+            "avg_volume": volume_stats.get("avg_volume", 0),
+            "max_volume": volume_stats.get("max_volume", 0),
+            "min_volume": volume_stats.get("min_volume", 0),
+            "avg_amount": volume_stats.get("avg_amount", 0),
+            "volume_trend": "放量" if volumes[-1] > sum(volumes[-5:]) / 5 else "缩量"
+        }
+
         return AgentResult(
             agent_name=self.name,
             score=score,
@@ -50,6 +61,7 @@ class QuantAnalyst(BaseAgent):
                 "ma5": float(indicators.get("ma5", 0)),
                 "rsi": float(indicators.get("rsi", 50)),
                 "trend": indicators.get("trend", "neutral"),
+                "volume_analysis": volume_analysis,
             },
             timestamp=datetime.now().isoformat(),
         )
