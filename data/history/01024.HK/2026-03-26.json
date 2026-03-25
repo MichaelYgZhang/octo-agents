@@ -4,23 +4,77 @@
   "date": "2026-03-26",
   "fundamental": {
     "agent_name": "fundamental_analyst",
-    "score": 65.0,
+    "score": 75.0,
     "confidence": 0.6,
     "summary": "Fundamental analysis completed",
     "details": {
       "valuation": "fair",
       "growth": "moderate",
-      "pe_ratio": 52.5,
-      "pb_ratio": 10.2,
-      "roe": "14.00%",
-      "gross_margin": "52.00%",
-      "net_margin": "15.00%",
-      "debt_ratio": "42.00%",
+      "pe_ratio": 54.5,
+      "pb_ratio": 12.2,
+      "roe": "21.00%",
+      "gross_margin": "54.00%",
+      "net_margin": "17.00%",
+      "debt_ratio": "34.00%",
       "industry": "互联网/短视频",
       "employees": "30,000+",
-      "main_business": "短视频、直播、电商"
+      "main_business": "短视频、直播、电商",
+      "strategic_analysis": {
+        "china_context": {
+          "title": "中国国情背景",
+          "points": [
+            "短视频用户渗透率超90%，行业进入存量竞争",
+            "内容监管趋严，合规成本上升",
+            "乡村振兴战略，下沉市场价值凸显",
+            "直播电商规范化发展，增长空间依然巨大",
+            "数字经济出海政策支持，海外市场机会增多"
+          ]
+        },
+        "tech_strength": {
+          "title": "技术实力分析",
+          "score": 80,
+          "details": [
+            "推荐算法：精准内容推荐，用户粘性强",
+            "视频技术：自研编解码技术，成本优势明显",
+            "直播技术：低延迟直播技术，电商转化率高",
+            "AI能力：内容审核AI、虚拟主播技术",
+            "研发投入：年研发投入超150亿，持续加码AI"
+          ]
+        },
+        "leadership_style": {
+          "title": "管理层风格（宿华、程一笑）",
+          "characteristics": [
+            "技术背景深厚：创始人都是工程师出身，重视产品技术",
+            "用户导向：专注用户体验，社区氛围维护",
+            "稳健发展：相比竞品更注重盈利能力",
+            "普惠理念：重视下沉市场和普通创作者",
+            "组织变革：近期进行组织架构调整，提升效率"
+          ]
+        },
+        "future_direction": {
+          "title": "下一阶段发力方向预测",
+          "directions": [
+            "电商业务：货架电商+直播电商双轮驱动",
+            "广告业务：内循环广告占比提升，商业化效率优化",
+            "海外市场：巴西、印尼等重点市场深耕",
+            "短剧内容：微短剧爆发，新增长点",
+            "AI应用：AI生成内容、虚拟人等新技术探索"
+          ]
+        },
+        "price_prediction": {
+          "title": "股价预测依据",
+          "short_term": "筑底回升，亏损大幅收窄，盈利拐点已现",
+          "mid_term": "稳定增长，商业化能力提升，利润率改善",
+          "long_term": "谨慎乐观，需关注竞争格局和内容生态健康度",
+          "risks": [
+            "抖音竞争压力",
+            "用户增长放缓",
+            "内容监管风险"
+          ]
+        }
+      }
     },
-    "timestamp": "2026-03-26T02:16:51.111633"
+    "timestamp": "2026-03-26T02:24:42.683351"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -40,7 +94,7 @@
         "volume_trend": "缩量"
       }
     },
-    "timestamp": "2026-03-26T02:16:51.111608"
+    "timestamp": "2026-03-26T02:24:42.683326"
   },
   "news": {
     "agent_name": "news_analyst",
@@ -116,7 +170,7 @@
         }
       ]
     },
-    "timestamp": "2026-03-26T02:16:51.111645"
+    "timestamp": "2026-03-26T02:24:42.683361"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -179,9 +233,9 @@
         ]
       }
     },
-    "timestamp": "2026-03-26T02:16:51.111650"
+    "timestamp": "2026-03-26T02:24:42.683369"
   },
-  "overall_score": 60.0,
+  "overall_score": 63.0,
   "recommendation": "hold",
   "risk_level": "medium",
   "stock_history": [
