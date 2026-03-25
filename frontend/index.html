@@ -250,6 +250,93 @@
                         </div>
                     </div>
 
+                    <!-- 战略深度分析 -->
+                    <div class="white-box" v-if="currentStock.fundamental.details.strategic_analysis" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #10b981;">
+                        <h4 style="color: #10b981; margin-bottom: 20px;">🎯 战略深度分析（经济学家视角）</h4>
+
+                        <!-- 中国国情背景 -->
+                        <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                            <h5 style="color: #10b981; font-size: 14px; margin-bottom: 10px;">
+                                🇨🇳 {{ currentStock.fundamental.details.strategic_analysis.china_context.title }}
+                            </h5>
+                            <ul style="color: #4b5563; font-size: 13px; margin-left: 20px; line-height: 1.8;">
+                                <li v-for="(point, idx) in currentStock.fundamental.details.strategic_analysis.china_context.points" :key="idx">
+                                    {{ point }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 技术实力分析 -->
+                        <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                            <h5 style="color: #10b981; font-size: 14px; margin-bottom: 10px;">
+                                💡 {{ currentStock.fundamental.details.strategic_analysis.tech_strength.title }}
+                            </h5>
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="color: #6b7280; font-size: 13px; margin-right: 10px;">技术实力评分：</span>
+                                <div style="flex: 1; height: 20px; background: #e5e7eb; border-radius: 10px; overflow: hidden;">
+                                    <div :style="{width: currentStock.fundamental.details.strategic_analysis.tech_strength.score + '%', height: '100%', background: 'linear-gradient(90deg, #10b981 0%, #34d399 100%)'}"></div>
+                                </div>
+                                <span style="color: #10b981; font-weight: bold; margin-left: 10px;">{{ currentStock.fundamental.details.strategic_analysis.tech_strength.score }}/100</span>
+                            </div>
+                            <ul style="color: #4b5563; font-size: 13px; margin-left: 20px; line-height: 1.8;">
+                                <li v-for="(detail, idx) in currentStock.fundamental.details.strategic_analysis.tech_strength.details" :key="idx">
+                                    {{ detail }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 管理层风格 -->
+                        <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                            <h5 style="color: #10b981; font-size: 14px; margin-bottom: 10px;">
+                                👔 {{ currentStock.fundamental.details.strategic_analysis.leadership_style.title }}
+                            </h5>
+                            <ul style="color: #4b5563; font-size: 13px; margin-left: 20px; line-height: 1.8;">
+                                <li v-for="(char, idx) in currentStock.fundamental.details.strategic_analysis.leadership_style.characteristics" :key="idx">
+                                    {{ char }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 未来发力方向 -->
+                        <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                            <h5 style="color: #10b981; font-size: 14px; margin-bottom: 10px;">
+                                🚀 {{ currentStock.fundamental.details.strategic_analysis.future_direction.title }}
+                            </h5>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div v-for="(direction, idx) in currentStock.fundamental.details.strategic_analysis.future_direction.directions" :key="idx"
+                                     style="background: #f0fdf4; padding: 10px; border-radius: 4px; border-left: 3px solid #10b981;">
+                                    <span style="color: #065f46; font-size: 13px;">{{ direction }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 股价预测依据 -->
+                        <div style="background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f59e0b;">
+                            <h5 style="color: #92400e; font-size: 14px; margin-bottom: 10px;">
+                                📈 {{ currentStock.fundamental.details.strategic_analysis.price_prediction.title }}
+                            </h5>
+                            <div style="color: #78350f; font-size: 13px; line-height: 1.8;">
+                                <p style="margin-bottom: 8px;">
+                                    <strong>短期：</strong>{{ currentStock.fundamental.details.strategic_analysis.price_prediction.short_term }}
+                                </p>
+                                <p style="margin-bottom: 8px;">
+                                    <strong>中期：</strong>{{ currentStock.fundamental.details.strategic_analysis.price_prediction.mid_term }}
+                                </p>
+                                <p style="margin-bottom: 8px;">
+                                    <strong>长期：</strong>{{ currentStock.fundamental.details.strategic_analysis.price_prediction.long_term }}
+                                </p>
+                                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #fbbf24;">
+                                    <strong style="color: #92400e;">⚠️ 风险提示：</strong>
+                                    <ul style="margin-left: 20px; margin-top: 5px;">
+                                        <li v-for="(risk, idx) in currentStock.fundamental.details.strategic_analysis.price_prediction.risks" :key="idx">
+                                            {{ risk }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- 预测依据 -->
                     <div class="white-box">
                         <h4>📐 预测依据与权重</h4>
