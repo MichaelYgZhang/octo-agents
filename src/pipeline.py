@@ -82,6 +82,7 @@ def run_analysis():
             "overall_score": round(overall_score, 2),
             "recommendation": recommendation,
             "risk_level": risk_level,
+            "stock_history": data.get("stock_history", []),  # 添加历史股价数据
         }
 
         all_results.append(result)

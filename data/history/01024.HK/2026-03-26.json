@@ -11,7 +11,7 @@
       "valuation": "fair",
       "growth": "moderate"
     },
-    "timestamp": "2026-03-26T01:19:12.482823"
+    "timestamp": "2026-03-26T01:35:40.762919"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -24,7 +24,7 @@
       "rsi": 50.0,
       "trend": "up"
     },
-    "timestamp": "2026-03-26T01:19:12.482815"
+    "timestamp": "2026-03-26T01:35:40.762911"
   },
   "news": {
     "agent_name": "news_analyst",
@@ -32,7 +32,7 @@
     "confidence": 0.0,
     "summary": "No news data available",
     "details": {},
-    "timestamp": "2026-03-26T01:19:12.482827"
+    "timestamp": "2026-03-26T01:35:40.762922"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -43,9 +43,81 @@
       "risk_level": "medium",
       "volatility": "moderate"
     },
-    "timestamp": "2026-03-26T01:19:12.482829"
+    "timestamp": "2026-03-26T01:35:40.762925"
   },
   "overall_score": 59.75,
   "recommendation": "hold",
-  "risk_level": "medium"
+  "risk_level": "medium",
+  "stock_history": [
+    {
+      "code": "01024.HK",
+      "date": "2026-03-17",
+      "open": 60.4,
+      "close": 59.85,
+      "high": 61.8,
+      "low": 59.6,
+      "volume": 25172006,
+      "amount": 1530134153.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-18",
+      "open": 60.0,
+      "close": 59.0,
+      "high": 60.2,
+      "low": 58.55,
+      "volume": 30042411,
+      "amount": 1775584308.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-19",
+      "open": 57.0,
+      "close": 55.35,
+      "high": 57.2,
+      "low": 55.05,
+      "volume": 66666228,
+      "amount": 3723215265.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-20",
+      "open": 55.25,
+      "close": 53.8,
+      "high": 55.35,
+      "low": 53.2,
+      "volume": 47849082,
+      "amount": 2583363137.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-23",
+      "open": 52.3,
+      "close": 51.7,
+      "high": 53.1,
+      "low": 51.0,
+      "volume": 50563711,
+      "amount": 2622598812.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-24",
+      "open": 53.0,
+      "close": 52.8,
+      "high": 53.2,
+      "low": 51.45,
+      "volume": 38677919,
+      "amount": 2025846987.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-25",
+      "open": 53.75,
+      "close": 53.05,
+      "high": 54.35,
+      "low": 52.05,
+      "volume": 43780312,
+      "amount": 2322779503.0
+    }
+  ]
 }
