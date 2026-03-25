@@ -11,6 +11,7 @@ from .agents.risk_analyst import RiskAnalyst
 from .models.analysis_result import AnalysisReport
 from .config import config
 from .utils.logger import get_logger
+from .feedback.learner import FeedbackLearner
 
 
 logger = get_logger("pipeline")
@@ -94,6 +95,18 @@ def run_analysis():
     # Step 4: Generate report
     logger.info("Step 4: Generating report...")
     generate_report(all_results)
+
+    # Step 5: Feedback learning
+    logger.info("Step 5: Recording predictions for feedback...")
+    feedback_learner = FeedbackLearner()
+    for result in all_results:
+        # Record new prediction
+        feedback_learner.record_prediction(result["code"], result)
+
+        # Validate old predictions if we have current data
+        if result.get("stock_history"):
+            current_price = result["stock_history"][-1]["close"]
+            feedback_learner.validate_predictions(result["code"], current_price)
 
     logger.info("Pipeline completed successfully")
 
