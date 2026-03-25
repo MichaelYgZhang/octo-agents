@@ -2,24 +2,15 @@
 const Sidebar = {
     template: `
         <div class="sidebar">
-            <div class="logo">
-                <h1>股票分析平台</h1>
-            </div>
+            <div class="logo"><h1>股票分析平台</h1></div>
             <div class="nav-items">
-                <div class="nav-item"
-                     v-for="item in navItems"
-                     :key="item.id"
-                     :class="{active: currentPage === item.id}"
-                     @click="navigate(item.id)">
+                <div class="nav-item" v-for="item in navItems" :key="item.id" :class="{active: currentPage === item.id}" @click="navigate(item.id)">
                     {{ item.icon }} {{ item.label }}
                 </div>
             </div>
-
             <div class="stock-selector">
                 <select v-model="selectedStock">
-                    <option v-for="stock in stocks" :key="stock.code" :value="stock.code">
-                        {{ stock.name }} ({{ stock.code }})
-                    </option>
+                    <option v-for="stock in stocks" :key="stock.code" :value="stock.code">{{ stock.name }} ({{ stock.code }})</option>
                 </select>
             </div>
         </div>
@@ -34,26 +25,14 @@ const Sidebar = {
         };
     },
     computed: {
-        stocks() {
-            return Store.stocks;
-        },
-        currentPage() {
-            return Store.currentPage;
-        },
+        stocks() { return Store.stocks; },
+        currentPage() { return Store.currentPage; },
         selectedStock: {
-            get() {
-                return Store.selectedStock;
-            },
-            set(value) {
-                Store.setSelectedStock(value);
-            }
+            get() { return Store.selectedStock; },
+            set(value) { Store.setSelectedStock(value); }
         }
     },
     methods: {
-        navigate(page) {
-            Store.setCurrentPage(page);
-        }
+        navigate(page) { Store.setCurrentPage(page); }
     }
 };
-
-Vue.component('sidebar', Sidebar);

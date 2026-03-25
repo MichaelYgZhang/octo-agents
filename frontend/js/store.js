@@ -1,5 +1,5 @@
-// 状态管理模块 - 使用Vue 3响应式系统
-const Store = Vue.reactive({
+// 状态管理模块 - 使用简单的响应式对象
+const Store = {
     stocks: [],
     selectedStock: null,
     stockHistory: {},
@@ -30,4 +30,4 @@ const Store = Vue.reactive({
             this.currentPage = window.location.hash.slice(1);
         }
     }
-});
+};
