@@ -132,12 +132,15 @@ stock-analysis-platform/
 │   ├── history/
 │   │   └── {stock_code}/
 │   │       └── {date}.json      # 历史数据
-│   └── intermediate/            # Agent中间结果
-│       ├── collector.json
-│       ├── fundamental.json
-│       ├── quant.json
-│       ├── news.json
-│       └── risk.json
+│   ├── intermediate/            # Agent中间结果
+│   │   ├── collector.json
+│   │   ├── fundamental.json
+│   │   ├── quant.json
+│   │   ├── news.json
+│   │   └── risk.json
+│   ├── predictions_history.json # 历史预测记录
+│   ├── portfolio.json            # 模拟投资组合
+│   └── cache/                    # LLM响应缓存
 ├── reports/
 │   ├── daily/
 │   │   └── {date}.md           # 每日报告
@@ -152,6 +155,134 @@ stock-analysis-platform/
     ├── src/
     └── dist/
 ```
+
+## 增量更新机制
+
+为避免资源浪费和数据重复计算，系统采用**增量更新**策略：
+
+### 数据沉淀原则
+
+1. **历史数据不可变**：已沉淀的历史分析结果永久保存
+2. **增量追加**：每日新增数据追加到历史文件，不重复计算
+3. **缓存优先**：LLM响应缓存24小时，相同问题复用结果
+4. **智能合并**：新数据与历史数据合并分析
+
+### 执行流程
+
+```
+GitHub Actions (Daily Trigger)
+  ↓
+读取最新沉淀文件（data/latest.json + data/predictions_history.json）
+  ↓
+仅采集最新数据（增量）：
+  - 股价：最近未采集的交易日
+  - 新闻：最近24小时的新新闻
+  - 财报：季度更新时才重新获取
+  ↓
+合并历史数据 + 新数据
+  ↓
+执行分析（Agent使用历史上下文）
+  ↓
+更新沉淀文件：
+  - 追加今日分析到 predictions_history.json
+  - 更新 latest.json
+  - 追加历史数据文件
+  ↓
+推送更新到仓库
+```
+
+### 数据读取策略
+
+**Agent启动时：**
+```python
+# 1. 加载历史沉淀
+history = load_predictions_history(stock_code, days=90)
+latest_data = load_latest_analysis(stock_code)
+
+# 2. 获取增量数据
+new_stock_data = fetch_latest_stock_data(since=latest_data['date'])
+new_news = fetch_latest_news(since=latest_data['news_last_updated'])
+
+# 3. 合并数据
+full_data = merge(latest_data, new_stock_data, new_news)
+
+# 4. 执行分析（Agent可访问历史上下文）
+result = agent.analyze(full_data, historical_context=history)
+```
+
+### 避免重复计算
+
+**财报数据：**
+- 按季度缓存，只在财报更新时重新获取
+- 检查报告期，避免重复请求相同季报
+
+**新闻数据：**
+- 记录最后抓取时间，只获取新发布的新闻
+- 使用文章URL去重
+
+**LLM分析：**
+- 缓存Prompt-Response对，24小时有效
+- 相同问题直接返回缓存结果
+
+**技术指标计算：**
+- 历史指标值从缓存读取
+- 仅计算新数据的指标
+
+### 沉淀文件示例
+
+**predictions_history.json:**
+```json
+{
+  "600519": [
+    {
+      "date": "2024-01-01",
+      "recommendation": "buy",
+      "overall_score": 75.0,
+      "validated": true,
+      "actual_return": 0.05,
+      "agent_scores": {...},
+      "price_at_prediction": 1800.0
+    },
+    {
+      "date": "2024-01-02",
+      "recommendation": "hold",
+      "overall_score": 65.0,
+      "validated": false,
+      ...
+    }
+  ]
+}
+```
+
+**latest.json:**
+```json
+[
+  {
+    "code": "600519",
+    "date": "2024-01-15",
+    "overall_score": 80.0,
+    "recommendation": "buy",
+    "news_last_updated": "2024-01-15T10:30:00",
+    "stock_data_last_updated": "2024-01-15T09:00:00",
+    "financial_data_last_updated": "2023-12-31",  // 季报发布日期
+    ...
+  }
+]
+```
+
+### 资源消耗优化
+
+| 数据类型 | 更新频率 | 缓存策略 | 预估节省 |
+|---------|---------|---------|---------|
+| 股价数据 | 每日 | 增量获取 | 90% API调用 |
+| 财报数据 | 季度 | 按报告期缓存 | 95% API调用 |
+| 新闻数据 | 每日 | 时间戳过滤 | 70% 爬虫请求 |
+| LLM分析 | 每日 | Prompt缓存 | 60% Token消耗 |
+| 技术指标 | 每日 | 历史值缓存 | 80% 计算时间 |
+
+通过增量更新，每日执行时间可从**15分钟降至3分钟**，API调用次数减少**70%**。
+
+
 
 ### 技术栈
 
