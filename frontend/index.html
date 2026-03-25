@@ -6,18 +6,19 @@
     <title>股票分析平台 - 美团 & 快手</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f7fa; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; margin-bottom: 30px; }
         .header h1 { font-size: 32px; margin-bottom: 10px; }
         .header p { opacity: 0.9; }
         .card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
-        .stock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .stock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); gap: 20px; }
         .stock-card h2 { color: #2c3e50; margin-bottom: 15px; }
         .score { font-size: 48px; font-weight: bold; color: #667eea; margin: 20px 0; }
-        .recommendation { display: inline-block; padding: 8px 16px; border-radius: 20px; font-weight: bold; margin: 10px 0; }
+        .recommendation { display: inline-block; padding: 8px 16px; border-radius: 20px; font-weight: bold; margin: 10px 5px; }
         .buy { background: #d4edda; color: #155724; }
         .hold { background: #fff3cd; color: #856404; }
         .sell { background: #f8d7da; color: #721c24; }
@@ -28,6 +29,15 @@
         .metric-value { font-weight: bold; color: #2c3e50; }
         .loading { text-align: center; padding: 40px; color: #909399; }
         .error { background: #f8d7da; color: #721c24; padding: 20px; border-radius: 8px; }
+        .time-selector { margin: 15px 0; }
+        .time-selector button { padding: 8px 16px; margin-right: 10px; border: 1px solid #667eea; background: white; color: #667eea; border-radius: 4px; cursor: pointer; }
+        .time-selector button.active { background: #667eea; color: white; }
+        .chart-container { height: 400px; margin: 20px 0; }
+        .latest-price { font-size: 24px; color: #2c3e50; margin: 10px 0; }
+        .price-up { color: #f56c6c; }
+        .price-down { color: #67c23a; }
+        .prediction-section { background: #f0f9ff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #667eea; }
+        .prediction-price { font-size: 28px; font-weight: bold; color: #667eea; margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -51,31 +61,72 @@
             </div>
             
             <div v-else class="stock-grid">
-                <div v-for="stock in stocks" :key="stock.code" class="stock-card card">
+                <div v-for="(stock, index) in stocks" :key="stock.code" class="stock-card card">
                     <h2>{{ stock.name }} ({{ stock.code }})</h2>
                     <p style="color: #909399; margin-bottom: 15px;">分析日期: {{ stock.date }}</p>
                     
+                    <!-- 最新股价 -->
+                    <div class="latest-price">
+                        <span>最新股价: </span>
+                        <span :class="getPriceClass(stock)">
+                            ¥{{ getLatestPrice(stock) }}
+                        </span>
+                        <span style="font-size: 14px; color: #909399; margin-left: 10px;">
+                            ({{ getLatestDate(stock) }})
+                        </span>
+                    </div>
+                    
+                    <!-- 综合评分 -->
                     <div class="score">{{ stock.overall_score.toFixed(1) }}</div>
                     <p style="color: #909399; margin-bottom: 10px;">综合评分 / 100</p>
                     
+                    <!-- 建议和风险 -->
                     <div :class="['recommendation', stock.recommendation]">
                         {{ getRecommendationText(stock.recommendation) }}
                     </div>
+                    <span style="color: #909399;">风险: {{ stock.risk_level }}</span>
                     
-                    <div style="margin: 15px 0;">
-                        <span style="color: #909399;">风险等级:</span>
-                        <strong style="margin-left: 10px;">{{ stock.risk_level }}</strong>
+                    <!-- 预测股价 -->
+                    <div class="prediction-section">
+                        <h3 style="color: #667eea; margin-bottom: 10px;">🎯 AI预测 (基于当前系统)</h3>
+                        <div class="prediction-price">
+                            预测价格: ¥{{ predictPrice(stock).toFixed(2) }}
+                        </div>
+                        <p style="color: #606266; font-size: 14px;">
+                            预测涨跌幅: 
+                            <span :style="{color: predictPrice(stock) > getLatestPrice(stock) ? '#f56c6c' : '#67c23a'}">
+                                {{ ((predictPrice(stock) - getLatestPrice(stock)) / getLatestPrice(stock) * 100).toFixed(2) }}%
+                            </span>
+                        </p>
+                        <p style="color: #909399; font-size: 12px; margin-top: 5px;">
+                            *基于技术指标(MA/RSI/趋势)综合评分计算
+                        </p>
                     </div>
                     
+                    <!-- 时间范围选择 -->
+                    <div class="time-selector">
+                        <button :class="{active: timeRange[index] === 7}" @click="changeTimeRange(index, 7)">最近一周</button>
+                        <button :class="{active: timeRange[index] === 14}" @click="changeTimeRange(index, 14)">最近两周</button>
+                        <button :class="{active: timeRange[index] === 30}" @click="changeTimeRange(index, 30)">最近一个月</button>
+                    </div>
+                    
+                    <!-- 股价走势图 -->
+                    <div :id="'chart-' + index" class="chart-container"></div>
+                    
+                    <!-- 分析详情 -->
                     <div class="detail-section">
-                        <h3>技术分析</h3>
+                        <h3>技术分析详情</h3>
                         <div class="metric">
-                            <span class="metric-label">评分</span>
+                            <span class="metric-label">技术评分</span>
                             <span class="metric-value">{{ stock.quant.score.toFixed(1) }}</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">信号</span>
+                            <span class="metric-label">交易信号</span>
                             <span class="metric-value">{{ stock.quant.details.signal }}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">MA5</span>
+                            <span class="metric-value">{{ stock.quant.details.ma5.toFixed(2) }}</span>
                         </div>
                         <div class="metric">
                             <span class="metric-label">RSI</span>
@@ -86,24 +137,12 @@
                             <span class="metric-value">{{ stock.quant.details.trend }}</span>
                         </div>
                     </div>
-
+                    
                     <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; font-size: 12px; color: #909399;">
                         <strong>📡 数据来源:</strong><br>
                         • 股价数据: <a href="https://akshare.akfamily.xyz" target="_blank" style="color: #667eea;">AkShare API</a> (港股实时行情)<br>
-                        • 数据范围: 最近7个交易日<br>
+                        • 数据范围: 最近{{ timeRange[index] }}天<br>
                         • 更新时间: {{ stock.date }}
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h3>基本面分析</h3>
-                        <div class="metric">
-                            <span class="metric-label">评分</span>
-                            <span class="metric-value">{{ stock.fundamental.score.toFixed(1) }}</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">结论</span>
-                            <span class="metric-value">{{ stock.fundamental.summary }}</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -119,6 +158,9 @@
                     title: '股票分析平台',
                     subtitle: 'AI驱动的多维度智能分析',
                     stocks: [],
+                    stockHistory: {},
+                    charts: {},
+                    timeRange: [7, 7], // 默认一周
                     loading: true,
                     error: null
                 };
@@ -129,35 +171,170 @@
             methods: {
                 async fetchData() {
                     try {
-                        // Try multiple paths for flexibility
-                        const paths = [
-                            '../data/latest.json',
-                            './data/latest.json',
-                            '/data/latest.json'
-                        ];
-
-                        let response = null;
-                        for (const path of paths) {
-                            try {
-                                response = await axios.get(path);
-                                if (response.data) break;
-                            } catch (e) {
-                                continue;
-                            }
-                        }
-
-                        if (!response || !response.data) {
-                            throw new Error('无法从任何路径加载数据');
-                        }
-
+                        const response = await axios.get('../data/latest.json');
                         this.stocks = response.data;
                         this.loading = false;
+                        
+                        // 加载历史数据
+                        for (let stock of this.stocks) {
+                            await this.loadHistoryData(stock.code);
+                        }
+                        
+                        // 渲染图表
+                        this.$nextTick(() => {
+                            this.stocks.forEach((stock, index) => {
+                                this.renderChart(index);
+                            });
+                        });
                     } catch (err) {
                         console.error('Failed to fetch data:', err);
-                        this.error = '无法加载分析结果，请确保已运行 python3 run_local.py 并从项目根目录启动服务器';
+                        this.error = '无法加载分析结果，请确保已运行 python3 run_local.py';
                         this.loading = false;
                     }
                 },
+                
+                async loadHistoryData(code) {
+                    try {
+                        const response = await axios.get(`../data/history/${code}/2026-03-26.json`);
+                        // 从stock_history获取历史数据
+                        const historyData = response.data.stock_history || [];
+                        this.stockHistory[code] = historyData;
+                    } catch (err) {
+                        console.error('Failed to load history:', err);
+                    }
+                },
+                
+                changeTimeRange(index, days) {
+                    this.timeRange[index] = days;
+                    this.renderChart(index);
+                },
+                
+                renderChart(index) {
+                    const stock = this.stocks[index];
+                    const history = this.stockHistory[stock.code] || [];
+                    const days = this.timeRange[index];
+                    
+                    // 截取指定天数的数据
+                    const data = history.slice(-days);
+                    
+                    if (!data.length) return;
+                    
+                    // 初始化或获取图表实例
+                    let chartDom = document.getElementById('chart-' + index);
+                    if (!chartDom) return;
+                    
+                    if (!this.charts[index]) {
+                        this.charts[index] = echarts.init(chartDom);
+                    }
+                    
+                    const option = {
+                        title: {
+                            text: `${stock.name} 股价走势`,
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            formatter: function(params) {
+                                const data = params[0];
+                                return `${data.axisValue}<br/>收盘价: ¥${data.value.toFixed(2)}`;
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: data.map(d => d.date),
+                            axisLabel: {
+                                rotate: 45
+                            }
+                        },
+                        yAxis: {
+                            type: 'value',
+                            name: '股价 (港币)',
+                            scale: true,
+                            axisLabel: {
+                                formatter: '¥{value}'
+                            }
+                        },
+                        series: [{
+                            name: '收盘价',
+                            type: 'line',
+                            data: data.map(d => d.close),
+                            smooth: true,
+                            lineStyle: {
+                                width: 3,
+                                color: '#667eea'
+                            },
+                            areaStyle: {
+                                color: {
+                                    type: 'linear',
+                                    x: 0, y: 0, x2: 0, y2: 1,
+                                    colorStops: [
+                                        { offset: 0, color: 'rgba(102,126,234,0.3)' },
+                                        { offset: 1, color: 'rgba(102,126,234,0.05)' }
+                                    ]
+                                }
+                            },
+                            markLine: {
+                                data: [
+                                    { type: 'average', name: '平均值' }
+                                ],
+                                lineStyle: {
+                                    color: '#ff9f43'
+                                }
+                            }
+                        }],
+                        grid: {
+                            left: '10%',
+                            right: '10%',
+                            bottom: '15%'
+                        }
+                    };
+                    
+                    this.charts[index].setOption(option);
+                },
+                
+                getLatestPrice(stock) {
+                    const history = this.stockHistory[stock.code] || [];
+                    if (history.length === 0) return 0;
+                    return history[history.length - 1].close;
+                },
+                
+                getLatestDate(stock) {
+                    const history = this.stockHistory[stock.code] || [];
+                    if (history.length === 0) return '-';
+                    return history[history.length - 1].date;
+                },
+                
+                getPriceClass(stock) {
+                    const history = this.stockHistory[stock.code] || [];
+                    if (history.length < 2) return '';
+                    const lastPrice = history[history.length - 1].close;
+                    const prevPrice = history[history.length - 2].close;
+                    return lastPrice >= prevPrice ? 'price-up' : 'price-down';
+                },
+                
+                predictPrice(stock) {
+                    // 基于技术指标预测股价
+                    const latestPrice = this.getLatestPrice(stock);
+                    const quantScore = stock.quant.score;
+                    const signal = stock.quant.details.signal;
+                    
+                    // 简单预测模型：
+                    // - 买入信号: 预测上涨 2-5%
+                    // - 持有信号: 预测波动 -1% 到 +1%
+                    // - 卖出信号: 预测下跌 2-5%
+                    
+                    let changeRate = 0;
+                    if (signal === 'buy') {
+                        changeRate = 0.02 + (quantScore / 100) * 0.03; // 2-5%
+                    } else if (signal === 'sell') {
+                        changeRate = -0.02 - ((100 - quantScore) / 100) * 0.03; // -2 to -5%
+                    } else {
+                        changeRate = -0.01 + (quantScore / 100) * 0.02; // -1% to +1%
+                    }
+                    
+                    return latestPrice * (1 + changeRate);
+                },
+                
                 getRecommendationText(rec) {
                     const map = { buy: '买入', hold: '持有', sell: '卖出' };
                     return map[rec] || rec;
