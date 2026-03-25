@@ -222,7 +222,31 @@
                                 </span>
                             </div>
                             <p style="color: #6b7280; font-size: 14px; margin-top: 8px;">{{ update.summary }}</p>
-                            <p style="color: #9ca3af; font-size: 12px; margin-top: 5px;">{{ update.date }}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                                <span style="color: #9ca3af; font-size: 12px;">{{ update.date }}</span>
+                                <a v-if="update.source && update.source.url"
+                                   :href="update.source.url"
+                                   target="_blank"
+                                   style="color: #667eea; font-size: 12px; text-decoration: none;">
+                                    📎 {{ update.source.name }}
+                                    <span style="font-size: 10px; color: #9ca3af; margin-left: 4px;">
+                                        ({{ update.source.url.includes('weibo') || update.source.url.includes('weixin') ? '公众平台' : '官网' }})
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 数据来源汇总 -->
+                        <div v-if="currentStock.news.details.data_sources" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
+                            <h5 style="color: #667eea; font-size: 13px; margin-bottom: 10px;">📡 产品动态数据来源：</h5>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <a v-for="(source, idx) in currentStock.news.details.data_sources" :key="idx"
+                                   :href="source.url"
+                                   target="_blank"
+                                   style="display: inline-block; padding: 6px 12px; background: #f3f4f6; border-radius: 15px; font-size: 12px; color: #667eea; text-decoration: none;">
+                                    {{ source.type === '官网' ? '🏢' : '📱' }} {{ source.name }}
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -310,7 +334,68 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- 国际战争影响分析 -->
+                    <div class="white-box" v-if="currentStock.risk.details.war_impact" style="border-left: 4px solid #f59e0b;">
+                        <h4 style="color: #f59e0b;">🌍 国际局势影响分析</h4>
+
+                        <!-- 总体影响 -->
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: bold; color: #92400e;">总体影响程度</span>
+                                <span class="accuracy-badge"
+                                      :class="currentStock.risk.details.war_impact.overall_impact === '低' ? 'accuracy-high' : 'accuracy-medium'">
+                                    {{ currentStock.risk.details.war_impact.overall_impact }}
+                                </span>
+                            </div>
+                            <p style="color: #78350f; font-size: 14px; margin-top: 8px;">
+                                {{ currentStock.risk.details.war_impact.business_exposure }}
+                            </p>
+                            <div style="margin-top: 8px; color: #92400e; font-size: 12px;">
+                                风险缓解: {{ currentStock.risk.details.war_impact.mitigation }}
+                            </div>
+                        </div>
+
+                        <!-- 当前主要冲突 -->
+                        <div v-if="currentStock.risk.details.war_impact.current_conflicts" style="margin-bottom: 15px;">
+                            <h5 style="color: #667eea; font-size: 13px; margin-bottom: 8px;">📍 当前主要国际冲突</h5>
+                            <div v-for="(conflict, idx) in currentStock.risk.details.war_impact.current_conflicts" :key="idx"
+                                 style="padding: 8px; background: #f9fafb; border-radius: 4px; margin-bottom: 8px; font-size: 13px;">
+                                <strong>{{ conflict.name }}</strong> - {{ conflict.status }}
+                                <span style="color: #9ca3af; margin-left: 8px;">影响等级: {{ conflict.impact_level }}</span>
+                            </div>
+                        </div>
+
+                        <!-- 关键风险领域 -->
+                        <div v-if="currentStock.risk.details.war_impact.key_risks">
+                            <h5 style="color: #667eea; font-size: 13px; margin-bottom: 10px;">⚠️ 关键风险领域</h5>
+                            <div v-for="(risk, idx) in currentStock.risk.details.war_impact.key_risks" :key="idx"
+                                 style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #f59e0b;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <span style="font-weight: bold; color: #1f2937;">{{ risk.area }}</span>
+                                    <span class="accuracy-badge"
+                                          :class="risk.impact === '低风险' ? 'accuracy-high' : 'accuracy-medium'">
+                                        {{ risk.impact }}
+                                    </span>
+                                </div>
+                                <p style="color: #6b7280; font-size: 13px;">{{ risk.description }}</p>
+                            </div>
+                        </div>
+
+                        <!-- 数据来源 -->
+                        <div v-if="currentStock.risk.details.war_impact.data_sources" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
+                            <h5 style="color: #667eea; font-size: 13px; margin-bottom: 10px;">📡 国际局势数据来源</h5>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <a v-for="(source, idx) in currentStock.risk.details.war_impact.data_sources" :key="idx"
+                                   :href="source.url"
+                                   target="_blank"
+                                   style="display: inline-block; padding: 6px 12px; background: #f3f4f6; border-radius: 15px; font-size: 12px; color: #667eea; text-decoration: none;">
+                                    🌐 {{ source.name }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- 数据来源 -->
                     <div class="white-box">
                         <h4>📡 数据来源与可信度</h4>

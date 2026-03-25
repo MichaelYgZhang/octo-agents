@@ -5,23 +5,23 @@
     "date": "2026-03-26",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 65.0,
+      "score": 70.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 52.5,
-        "pb_ratio": 10.2,
-        "roe": "14.00%",
-        "gross_margin": "52.00%",
-        "net_margin": "15.00%",
-        "debt_ratio": "42.00%",
+        "pe_ratio": 45.5,
+        "pb_ratio": 8.2,
+        "roe": "22.00%",
+        "gross_margin": "45.00%",
+        "net_margin": "8.00%",
+        "debt_ratio": "35.00%",
         "industry": "互联网/科技",
         "employees": "70,000+",
         "main_business": "外卖、到店、酒旅、新业务"
       },
-      "timestamp": "2026-03-26T01:51:26.633792"
+      "timestamp": "2026-03-26T02:04:52.163472"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -41,7 +41,7 @@
           "volume_trend": "放量"
         }
       },
-      "timestamp": "2026-03-26T01:51:26.633425"
+      "timestamp": "2026-03-26T02:04:52.162944"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -52,22 +52,72 @@
         "news_count": 0,
         "product_updates": [
           {
-            "title": "产品创新持续推进",
-            "summary": "公司持续优化核心产品功能，提升用户体验",
+            "title": "美团外卖持续优化履约效率",
+            "summary": "通过智能调度系统和骑手网络优化，提升配送效率和用户体验",
             "date": "近期",
-            "impact": "positive"
+            "impact": "positive",
+            "source": {
+              "name": "美团官网",
+              "url": "https://www.meituan.com/"
+            }
           },
           {
-            "title": "市场份额保持稳定",
-            "summary": "在核心业务领域保持竞争优势，用户活跃度稳中有升",
+            "title": "到店业务数字化升级",
+            "summary": "助力商户数字化转型，提升经营效率和用户粘性",
             "date": "近期",
-            "impact": "neutral"
+            "impact": "positive",
+            "source": {
+              "name": "美团投资者关系",
+              "url": "https://ir.meituan.com/"
+            }
+          },
+          {
+            "title": "新业务探索稳步推进",
+            "summary": "在社区团购、即时零售等新业务领域持续投入和创新",
+            "date": "近期",
+            "impact": "neutral",
+            "source": {
+              "name": "美团新闻中心",
+              "url": "https://www.meituan.com/news/"
+            }
           }
         ],
         "industry_trend": "稳定发展",
-        "market_sentiment": "中性"
+        "market_sentiment": "中性",
+        "data_sources": [
+          {
+            "name": "美团官网",
+            "url": "https://www.meituan.com/",
+            "type": "官网"
+          },
+          {
+            "name": "美团投资者关系",
+            "url": "https://ir.meituan.com/",
+            "type": "官网"
+          },
+          {
+            "name": "快手官网",
+            "url": "https://www.kuaishou.com/",
+            "type": "官网"
+          },
+          {
+            "name": "快手投资者关系",
+            "url": "https://ir.kuaishou.com/",
+            "type": "官网"
+          },
+          {
+            "name": "美团微信公众号",
+            "url": "https://mp.weixin.qq.com/",
+            "type": "公众平台"
+          },
+          {
+            "name": "快手官方微博",
+            "url": "https://weibo.com/kuaishou",
+            "type": "公众平台"
+          }
+        ]
       },
-      "timestamp": "2026-03-26T01:51:26.633802"
+      "timestamp": "2026-03-26T02:04:52.163605"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -76,11 +126,63 @@
       "summary": "Risk level: medium",
       "details": {
         "risk_level": "medium",
-        "volatility": "moderate"
+        "volatility": "moderate",
+        "war_impact": {
+          "overall_impact": "低",
+          "confidence": 0.8,
+          "business_exposure": "国内业务为主，国际战争影响有限",
+          "key_risks": [
+            {
+              "area": "供应链稳定性",
+              "impact": "中等风险",
+              "description": "部分上游供应链可能受国际贸易影响，需要多元化采购策略"
+            },
+            {
+              "area": "消费者情绪",
+              "impact": "低风险",
+              "description": "国内消费市场相对稳定，用户消费意愿受战争影响较小"
+            },
+            {
+              "area": "汇率波动",
+              "impact": "低风险",
+              "description": "人民币汇率相对稳定，对美团业务影响有限"
+            }
+          ],
+          "mitigation": "公司主要业务在国内市场，国际业务占比较小，战争风险敞口有限",
+          "data_sources": [
+            {
+              "name": "新华社国际新闻",
+              "url": "http://www.xinhuanet.com/world/",
+              "type": "官方媒体"
+            },
+            {
+              "name": "人民日报海外版",
+              "url": "http://paper.people.com.cn/rmrbhwb/",
+              "type": "官方媒体"
+            },
+            {
+              "name": "中国新闻网",
+              "url": "https://www.chinanews.com.cn/gj/",
+              "type": "官方媒体"
+            }
+          ],
+          "current_conflicts": [
+            {
+              "name": "俄乌冲突",
+              "status": "持续中",
+              "impact_level": "medium"
+            },
+            {
+              "name": "中东局势",
+              "status": "波动",
+              "impact_level": "low"
+            }
+          ]
+        }
       },
-      "timestamp": "2026-03-26T01:51:26.633807"
+      "timestamp": "2026-03-26T02:04:52.163622"
     },
-    "overall_score": 47.5,
+    "overall_score": 49.0,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
@@ -392,23 +494,23 @@
     "date": "2026-03-26",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 75.0,
+      "score": 60.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 39.5,
-        "pb_ratio": 12.2,
-        "roe": "16.00%",
-        "gross_margin": "39.00%",
-        "net_margin": "12.00%",
-        "debt_ratio": "29.00%",
+        "pe_ratio": 37.5,
+        "pb_ratio": 10.2,
+        "roe": "14.00%",
+        "gross_margin": "37.00%",
+        "net_margin": "10.00%",
+        "debt_ratio": "27.00%",
         "industry": "互联网/短视频",
         "employees": "30,000+",
         "main_business": "短视频、直播、电商"
       },
-      "timestamp": "2026-03-26T01:51:26.634699"
+      "timestamp": "2026-03-26T02:04:52.165291"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -428,7 +530,7 @@
           "volume_trend": "缩量"
         }
       },
-      "timestamp": "2026-03-26T01:51:26.634680"
+      "timestamp": "2026-03-26T02:04:52.165256"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -439,22 +541,72 @@
         "news_count": 0,
         "product_updates": [
           {
-            "title": "产品创新持续推进",
-            "summary": "公司持续优化核心产品功能，提升用户体验",
+            "title": "快手电商GMV持续增长",
+            "summary": "电商业务保持强劲增长势头，直播电商生态持续完善",
             "date": "近期",
-            "impact": "positive"
+            "impact": "positive",
+            "source": {
+              "name": "快手官网",
+              "url": "https://www.kuaishou.com/"
+            }
           },
           {
-            "title": "市场份额保持稳定",
-            "summary": "在核心业务领域保持竞争优势，用户活跃度稳中有升",
+            "title": "内容生态建设深化",
+            "summary": "扶持优质创作者，丰富内容供给，提升用户粘性和活跃度",
             "date": "近期",
-            "impact": "neutral"
+            "impact": "positive",
+            "source": {
+              "name": "快手投资者关系",
+              "url": "https://ir.kuaishou.com/"
+            }
+          },
+          {
+            "title": "商业化变现能力提升",
+            "summary": "广告业务和直播打赏收入稳步增长，平台变现效率提升",
+            "date": "近期",
+            "impact": "positive",
+            "source": {
+              "name": "快手新闻中心",
+              "url": "https://www.kuaishou.com/news"
+            }
           }
         ],
         "industry_trend": "稳定发展",
-        "market_sentiment": "中性"
+        "market_sentiment": "中性",
+        "data_sources": [
+          {
+            "name": "美团官网",
+            "url": "https://www.meituan.com/",
+            "type": "官网"
+          },
+          {
+            "name": "美团投资者关系",
+            "url": "https://ir.meituan.com/",
+            "type": "官网"
+          },
+          {
+            "name": "快手官网",
+            "url": "https://www.kuaishou.com/",
+            "type": "官网"
+          },
+          {
+            "name": "快手投资者关系",
+            "url": "https://ir.kuaishou.com/",
+            "type": "官网"
+          },
+          {
+            "name": "美团微信公众号",
+            "url": "https://mp.weixin.qq.com/",
+            "type": "公众平台"
+          },
+          {
+            "name": "快手官方微博",
+            "url": "https://weibo.com/kuaishou",
+            "type": "公众平台"
+          }
+        ]
       },
-      "timestamp": "2026-03-26T01:51:26.634705"
+      "timestamp": "2026-03-26T02:04:52.165431"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -463,11 +615,63 @@
       "summary": "Risk level: medium",
       "details": {
         "risk_level": "medium",
-        "volatility": "moderate"
+        "volatility": "moderate",
+        "war_impact": {
+          "overall_impact": "低",
+          "confidence": 0.8,
+          "business_exposure": "国内业务为主，国际业务占比较小",
+          "key_risks": [
+            {
+              "area": "内容生态",
+              "impact": "低风险",
+              "description": "平台内容审核严格，受国际舆论影响较小"
+            },
+            {
+              "area": "国际化战略",
+              "impact": "中等风险",
+              "description": "海外市场拓展计划可能因地缘政治放缓"
+            },
+            {
+              "area": "广告业务",
+              "impact": "低风险",
+              "description": "国内广告主稳定，受国际形势影响有限"
+            }
+          ],
+          "mitigation": "公司主要聚焦国内市场，国际局势对核心业务影响较小",
+          "data_sources": [
+            {
+              "name": "新华社国际新闻",
+              "url": "http://www.xinhuanet.com/world/",
+              "type": "官方媒体"
+            },
+            {
+              "name": "央视新闻",
+              "url": "https://news.cctv.com/world/",
+              "type": "官方媒体"
+            },
+            {
+              "name": "环球网",
+              "url": "https://world.huanqiu.com/",
+              "type": "新闻门户"
+            }
+          ],
+          "current_conflicts": [
+            {
+              "name": "俄乌冲突",
+              "status": "持续中",
+              "impact_level": "medium"
+            },
+            {
+              "name": "中东局势",
+              "status": "波动",
+              "impact_level": "low"
+            }
+          ]
+        }
       },
-      "timestamp": "2026-03-26T01:51:26.634709"
+      "timestamp": "2026-03-26T02:04:52.165447"
     },
-    "overall_score": 63.0,
+    "overall_score": 58.5,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
