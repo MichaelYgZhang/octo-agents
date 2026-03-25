@@ -303,37 +303,90 @@
                     <!-- 数据来源 -->
                     <div class="white-box">
                         <h4>📡 数据来源与可信度</h4>
-                        
+
                         <div class="data-source">
                             <span class="data-source-icon">📊</span>
                             <div style="flex: 1;">
                                 <div style="font-weight: bold; color: #1f2937;">股价数据</div>
                                 <div style="color: #6b7280; font-size: 13px;">
-                                    <a href="https://akshare.akfamily.xyz" target="_blank" style="color: #667eea;">AkShare API</a> (港股实时行情)
+                                    <a href="https://akshare.akfamily.xyz" target="_blank" style="color: #667eea;">AkShare API</a> |
+                                    <a href="https://github.com/akfamily/akshare" target="_blank" style="color: #667eea;">GitHub</a>
                                 </div>
-                                <div style="color: #6b7280; font-size: 12px;">官方港交所数据，延迟<15分钟</div>
+                                <div style="color: #6b7280; font-size: 12px;">
+                                    数据源: <a href="https://www.hkex.com.hk/" target="_blank" style="color: #667eea;">港交所官方</a>，延迟&lt;15分钟
+                                </div>
                             </div>
                             <span class="accuracy-badge accuracy-high">可信度: 高</span>
                         </div>
-                        
+
+                        <div class="data-source">
+                            <span class="data-source-icon">💰</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; color: #1f2937;">财务数据</div>
+                                <div style="color: #6b7280; font-size: 13px;">
+                                    <a href="https://www.hkexnews.hk/" target="_blank" style="color: #667eea;">港交所披露易</a> |
+                                    <a href="https://xueqiu.com/" target="_blank" style="color: #667eea;">雪球财经</a>
+                                </div>
+                                <div style="color: #6b7280; font-size: 12px;">
+                                    PE/PB/ROE/毛利率等指标，基于公开财报数据
+                                </div>
+                            </div>
+                            <span class="accuracy-badge accuracy-high">可信度: 高</span>
+                        </div>
+
                         <div class="data-source">
                             <span class="data-source-icon">📈</span>
                             <div style="flex: 1;">
                                 <div style="font-weight: bold; color: #1f2937;">技术指标计算</div>
-                                <div style="color: #6b7280; font-size: 13px;">本地计算 (MA/RSI/MACD)</div>
+                                <div style="color: #6b7280; font-size: 13px;">
+                                    本地计算 (MA/RSI/MACD) |
+                                    <a href="https://pandas.pydata.org/" target="_blank" style="color: #667eea;">Pandas</a> |
+                                    <a href="https://numpy.org/" target="_blank" style="color: #667eea;">NumPy</a>
+                                </div>
                                 <div style="color: #6b7280; font-size: 12px;">基于历史数据精确计算</div>
                             </div>
                             <span class="accuracy-badge accuracy-high">可信度: 高</span>
                         </div>
-                        
+
+                        <div class="data-source">
+                            <span class="data-source-icon">📰</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; color: #1f2937;">新闻舆情</div>
+                                <div style="color: #6b7280; font-size: 13px;">
+                                    <a href="https://finance.sina.com.cn/" target="_blank" style="color: #667eea;">新浪财经</a> |
+                                    <a href="https://www.wsj.com/" target="_blank" style="color: #667eea;">华尔街日报</a> |
+                                    <a href="https://www.reuters.com/" target="_blank" style="color: #667eea;">路透社</a>
+                                </div>
+                                <div style="color: #6b7280; font-size: 12px;">行业动态、市场情绪分析</div>
+                            </div>
+                            <span class="accuracy-badge accuracy-medium">可信度: 中</span>
+                        </div>
+
                         <div class="data-source">
                             <span class="data-source-icon">🤖</span>
                             <div style="flex: 1;">
                                 <div style="font-weight: bold; color: #1f2937;">AI分析引擎</div>
-                                <div style="color: #6b7280; font-size: 13px;">Claude Sonnet 4.6</div>
-                                <div style="color: #6b7280; font-size: 12px;">多维度综合评估</div>
+                                <div style="color: #6b7280; font-size: 13px;">
+                                    <a href="https://www.anthropic.com/" target="_blank" style="color: #667eea;">Claude Sonnet 4.6</a> |
+                                    <a href="https://docs.anthropic.com/claude/docs" target="_blank" style="color: #667eea;">API文档</a>
+                                </div>
+                                <div style="color: #6b7280; font-size: 12px;">多维度综合评估、预测建模</div>
                             </div>
                             <span class="accuracy-badge accuracy-medium">可信度: 中</span>
+                        </div>
+
+                        <div class="data-source">
+                            <span class="data-source-icon">🏗️</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; color: #1f2937;">技术架构</div>
+                                <div style="color: #6b7280; font-size: 13px;">
+                                    <a href="https://python.org/" target="_blank" style="color: #667eea;">Python 3.12</a> |
+                                    <a href="https://vuejs.org/" target="_blank" style="color: #667eea;">Vue 3</a> |
+                                    <a href="https://echarts.apache.org/" target="_blank" style="color: #667eea;">ECharts 5</a>
+                                </div>
+                                <div style="color: #6b7280; font-size: 12px;">Pydantic数据验证 | 多Agent协作架构</div>
+                            </div>
+                            <span class="accuracy-badge accuracy-high">可信度: 高</span>
                         </div>
                         
                         <!-- 总体置信度 -->
@@ -360,6 +413,40 @@
                             <li>历史表现不代表未来收益</li>
                             <li>建议结合多方信息独立判断</li>
                         </ul>
+                    </div>
+
+                    <!-- 资源链接 -->
+                    <div class="white-box" style="margin-top: 20px;">
+                        <h4>📚 相关资源与文档</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                            <div>
+                                <h5 style="color: #667eea; margin-bottom: 8px;">数据源文档</h5>
+                                <ul style="color: #6b7280; font-size: 13px; margin-left: 20px; line-height: 1.8;">
+                                    <li><a href="https://akshare.akfamily.xyz" target="_blank" style="color: #667eea;">AkShare官方文档</a></li>
+                                    <li><a href="https://www.hkex.com.hk/" target="_blank" style="color: #667eea;">港交所官网</a></li>
+                                    <li><a href="https://www.hkexnews.hk/" target="_blank" style="color: #667eea;">披露易平台</a></li>
+                                    <li><a href="https://xueqiu.com/" target="_blank" style="color: #667eea;">雪球财经</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: #667eea; margin-bottom: 8px;">技术文档</h5>
+                                <ul style="color: #6b7280; font-size: 13px; margin-left: 20px; line-height: 1.8;">
+                                    <li><a href="https://docs.anthropic.com/" target="_blank" style="color: #667eea;">Claude API文档</a></li>
+                                    <li><a href="https://vuejs.org/guide/" target="_blank" style="color: #667eea;">Vue 3指南</a></li>
+                                    <li><a href="https://echarts.apache.org/handbook/zh/" target="_blank" style="color: #667eea;">ECharts教程</a></li>
+                                    <li><a href="https://pandas.pydata.org/docs/" target="_blank" style="color: #667eea;">Pandas文档</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
+                            <p style="color: #6b7280; font-size: 12px;">
+                                💡 完整的数据来源清单和技术架构说明请查看
+                                <a href="https://github.com/[username]/stock-analysis/blob/main/docs/superpowers/stock-analysis-data-sources.md"
+                                   target="_blank" style="color: #667eea; font-weight: bold;">
+                                    数据来源与资源清单文档
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
