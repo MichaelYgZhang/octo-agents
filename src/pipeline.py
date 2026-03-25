@@ -24,10 +24,10 @@ def run_analysis():
     stocks = config.get_monitored_stocks()
     stock_codes = [s["code"] for s in stocks]
 
-    # Step 1: Collect data (1 week)
+    # Step 1: Collect data (30 days for full range support)
     logger.info("Step 1: Collecting data...")
     collector = DataCollector()
-    stock_data = collector.collect(stock_codes, days=7)
+    stock_data = collector.collect(stock_codes, days=30)  # 获取30天数据
 
     # Step 2: Analyze each stock
     logger.info("Step 2: Analyzing stocks...")

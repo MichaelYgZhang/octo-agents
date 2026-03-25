@@ -32,6 +32,7 @@
         .time-selector { margin: 15px 0; }
         .time-selector button { padding: 8px 16px; margin-right: 10px; border: 1px solid #667eea; background: white; color: #667eea; border-radius: 4px; cursor: pointer; }
         .time-selector button.active { background: #667eea; color: white; }
+        .time-selector button:disabled { opacity: 0.5; cursor: not-allowed; }
         .chart-container { height: 400px; margin: 20px 0; }
         .latest-price { font-size: 24px; color: #2c3e50; margin: 10px 0; }
         .price-up { color: #f56c6c; }
@@ -105,9 +106,9 @@
                     
                     <!-- 时间范围选择 -->
                     <div class="time-selector">
-                        <button :class="{active: timeRange[index] === 7}" @click="changeTimeRange(index, 7)">最近一周</button>
-                        <button :class="{active: timeRange[index] === 14}" @click="changeTimeRange(index, 14)">最近两周</button>
-                        <button :class="{active: timeRange[index] === 30}" @click="changeTimeRange(index, 30)">最近一个月</button>
+                        <button :class="{active: timeRange[index] === 7}" @click="changeTimeRange(index, 7)">最近一周 (7天)</button>
+                        <button :class="{active: timeRange[index] === 14}" @click="changeTimeRange(index, 14)" :disabled="getHistoryLength(stock) < 14">最近两周 (14天)</button>
+                        <button :class="{active: timeRange[index] === 30}" @click="changeTimeRange(index, 30)" :disabled="getHistoryLength(stock) < 30">最近一个月 (30天)</button>
                     </div>
                     
                     <!-- 股价走势图 -->
@@ -338,6 +339,10 @@
                 getRecommendationText(rec) {
                     const map = { buy: '买入', hold: '持有', sell: '卖出' };
                     return map[rec] || rec;
+                },
+
+                getHistoryLength(stock) {
+                    return (this.stockHistory[stock.code] || []).length;
                 }
             }
         }).mount('#app');
