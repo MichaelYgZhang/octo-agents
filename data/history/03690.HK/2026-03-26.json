@@ -1,0 +1,51 @@
+{
+  "code": "03690.HK",
+  "name": "美团",
+  "date": "2026-03-26",
+  "fundamental": {
+    "agent_name": "fundamental_analyst",
+    "score": 60.0,
+    "confidence": 0.6,
+    "summary": "Fundamental analysis completed",
+    "details": {
+      "valuation": "fair",
+      "growth": "moderate"
+    },
+    "timestamp": "2026-03-26T01:19:12.482442"
+  },
+  "quant": {
+    "agent_name": "quant_analyst",
+    "score": 85.0,
+    "confidence": 0.7,
+    "summary": "Quantitative analysis: buy",
+    "details": {
+      "signal": "buy",
+      "ma5": 81.08,
+      "rsi": 50.0,
+      "trend": "up"
+    },
+    "timestamp": "2026-03-26T01:19:12.482329"
+  },
+  "news": {
+    "agent_name": "news_analyst",
+    "score": 50.0,
+    "confidence": 0.0,
+    "summary": "No news data available",
+    "details": {},
+    "timestamp": "2026-03-26T01:19:12.482447"
+  },
+  "risk": {
+    "agent_name": "risk_analyst",
+    "score": 40.0,
+    "confidence": 0.7,
+    "summary": "Risk level: medium",
+    "details": {
+      "risk_level": "medium",
+      "volatility": "moderate"
+    },
+    "timestamp": "2026-03-26T01:19:12.482451"
+  },
+  "overall_score": 59.75,
+  "recommendation": "hold",
+  "risk_level": "medium"
+}

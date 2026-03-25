@@ -1,0 +1,16 @@
+{
+  "monitored_stocks": [
+    {
+      "code": "03690.HK",
+      "name": "美团",
+      "sector": "互联网"
+    },
+    {
+      "code": "01024.HK",
+      "name": "快手",
+      "sector": "互联网"
+    }
+  ],
+  "update_frequency": "daily",
+  "analysis_time": "08:00"
+}

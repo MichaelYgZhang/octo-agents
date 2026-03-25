@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票分析平台 - 美团 & 快手</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f7fa; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; margin-bottom: 30px; }
+        .header h1 { font-size: 32px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        .stock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .stock-card h2 { color: #2c3e50; margin-bottom: 15px; }
+        .score { font-size: 48px; font-weight: bold; color: #667eea; margin: 20px 0; }
+        .recommendation { display: inline-block; padding: 8px 16px; border-radius: 20px; font-weight: bold; margin: 10px 0; }
+        .buy { background: #d4edda; color: #155724; }
+        .hold { background: #fff3cd; color: #856404; }
+        .sell { background: #f8d7da; color: #721c24; }
+        .detail-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+        .detail-section h3 { color: #606266; margin-bottom: 10px; }
+        .metric { display: flex; justify-content: space-between; padding: 8px 0; }
+        .metric-label { color: #909399; }
+        .metric-value { font-weight: bold; color: #2c3e50; }
+        .loading { text-align: center; padding: 40px; color: #909399; }
+        .error { background: #f8d7da; color: #721c24; padding: 20px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <h1>{{ title }}</h1>
+            <p>{{ subtitle }}</p>
+        </div>
+        
+        <div class="container">
+            <div v-if="loading" class="loading">
+                <p>正在加载分析结果...</p>
+            </div>
+            
+            <div v-else-if="error" class="error">
+                <p>{{ error }}</p>
+            </div>
+            
+            <div v-else class="stock-grid">
+                <div v-for="stock in stocks" :key="stock.code" class="stock-card card">
+                    <h2>{{ stock.name }} ({{ stock.code }})</h2>
+                    <p style="color: #909399; margin-bottom: 15px;">分析日期: {{ stock.date }}</p>
+                    
+                    <div class="score">{{ stock.overall_score.toFixed(1) }}</div>
+                    <p style="color: #909399; margin-bottom: 10px;">综合评分 / 100</p>
+                    
+                    <div :class="['recommendation', stock.recommendation]">
+                        {{ getRecommendationText(stock.recommendation) }}
+                    </div>
+                    
+                    <div style="margin: 15px 0;">
+                        <span style="color: #909399;">风险等级:</span>
+                        <strong style="margin-left: 10px;">{{ stock.risk_level }}</strong>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>技术分析</h3>
+                        <div class="metric">
+                            <span class="metric-label">评分</span>
+                            <span class="metric-value">{{ stock.quant.score.toFixed(1) }}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">信号</span>
+                            <span class="metric-value">{{ stock.quant.details.signal }}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">RSI</span>
+                            <span class="metric-value">{{ stock.quant.details.rsi.toFixed(2) }}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">趋势</span>
+                            <span class="metric-value">{{ stock.quant.details.trend }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>基本面分析</h3>
+                        <div class="metric">
+                            <span class="metric-label">评分</span>
+                            <span class="metric-value">{{ stock.fundamental.score.toFixed(1) }}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">结论</span>
+                            <span class="metric-value">{{ stock.fundamental.summary }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        
+        createApp({
+            data() {
+                return {
+                    title: '股票分析平台',
+                    subtitle: 'AI驱动的多维度智能分析',
+                    stocks: [],
+                    loading: true,
+                    error: null
+                };
+            },
+            mounted() {
+                this.fetchData();
+            },
+            methods: {
+                async fetchData() {
+                    try {
+                        const response = await axios.get('../data/latest.json');
+                        this.stocks = response.data;
+                        this.loading = false;
+                    } catch (err) {
+                        console.error('Failed to fetch data:', err);
+                        this.error = '无法加载分析结果，请确保已运行 python3 run_local.py';
+                        this.loading = false;
+                    }
+                },
+                getRecommendationText(rec) {
+                    const map = { buy: '买入', hold: '持有', sell: '卖出' };
+                    return map[rec] || rec;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
