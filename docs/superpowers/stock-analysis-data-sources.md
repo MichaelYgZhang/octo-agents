@@ -54,27 +54,68 @@ type: reference
 
 ### 3. 新闻舆情
 
+**美团官方渠道**
+- 官网: https://www.meituan.com/
+- 投资者关系: https://ir.meituan.com/
+- 新闻中心: https://www.meituan.com/news/
+- 微信公众号: 美团Meituan
+- 功能: 公司动态、产品发布、业绩公告
+- 更新频率: 实时
+- 可信度: 高（官网权威来源）
+
+**快手官方渠道**
+- 官网: https://www.kuaishou.com/
+- 投资者关系: https://ir.kuaishou.com/
+- 新闻中心: https://www.kuaishou.com/news
+- 官方微博: https://weibo.com/kuaishou
+- 功能: 公司动态、产品发布、业绩公告
+- 更新频率: 实时
+- 可信度: 高（官网权威来源）
+
+**国际局势新闻源**
+- 新华社国际新闻: http://www.xinhuanet.com/world/
+  - 权威官方媒体，国际局势报道
+  - 可信度: 高
+- 央视新闻: https://news.cctv.com/world/
+  - 央视国际新闻频道
+  - 可信度: 高
+- 人民日报海外版: http://paper.people.com.cn/rmrbhwb/
+  - 官方权威媒体
+  - 可信度: 高
+- 环球网: https://world.huanqiu.com/
+  - 国际新闻门户
+  - 可信度: 中
+- 中国新闻网: https://www.chinanews.com.cn/gj/
+  - 官方新闻门户
+  - 可信度: 高
+
 **新浪财经**
 - 官网: https://finance.sina.com.cn/
 - API: https://finance.sina.com.cn/7x24/
 - 功能: 实时新闻、市场动态、公司公告
 - 更新频率: 实时
 - 覆盖: 港股、美股、A股
+- 可信度: 中（第三方媒体）
 
 **华尔街日报（英文）**
 - 官网: https://www.wsj.com/
 - 功能: 全球财经新闻、深度分析
 - 特色: 权威性强，国际视野
+- 可信度: 高（权威媒体）
 
 **路透社（英文）**
 - 官网: https://www.reuters.com/
 - 功能: 全球财经新闻、市场数据
 - 特色: 实时性强，覆盖面广
+- 可信度: 高（权威媒体）
 
 **东方财富网**
 - 官网: https://www.eastmoney.com/
 - 功能: 财经新闻、研报、数据
 - API: http://data.eastmoney.com/
+- 可信度: 中（国内财经门户）
+
+
 
 ## 技术栈资源
 
