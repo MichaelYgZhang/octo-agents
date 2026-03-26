@@ -130,7 +130,7 @@ const MacroAnalysisPage = {
     methods: {
         async loadArticles() {
             try {
-                const response = await axios.get('../data/macro_articles.json');
+                const response = await axios.get(API.buildDataUrl('data/macro_articles.json'));
                 this.articles = response.data.articles || [];
             } catch (error) {
                 console.error('Failed to load articles:', error);

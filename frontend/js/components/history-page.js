@@ -94,7 +94,7 @@ const HistoryPage = {
 
         async loadHistoricalData() {
             try {
-                const response = await axios.get('../data/feedback_history.json');
+                const response = await axios.get(API.buildDataUrl('data/feedback_history.json'));
                 const feedbackData = response.data || {};
                 this.historicalData = feedbackData[this.currentStock.code] || [];
             } catch (error) {

@@ -2,6 +2,22 @@
 const API = {
     currentRequestId: 0,
 
+    // 获取basePath（支持GitHub Pages子路径部署）
+    getBasePath() {
+        // 检测是否在GitHub Pages子路径下
+        if (window.location.pathname.startsWith('/octo-agents')) {
+            return '/octo-agents';
+        }
+        // 本地开发环境
+        return '';
+    },
+
+    // 构建正确的数据URL
+    buildDataUrl(relativePath) {
+        const basePath = this.getBasePath();
+        return `${basePath}/${relativePath}`;
+    },
+
     async fetchAllStocks() {
         Store.loading = true;
         Store.error = null;
@@ -9,7 +25,7 @@ const API = {
         const requestId = ++this.currentRequestId;
 
         try {
-            const response = await axios.get('../data/latest.json');
+            const response = await axios.get(this.buildDataUrl('data/latest.json'));
 
             // 确保这是最新的请求
             if (requestId !== this.currentRequestId) {
@@ -43,7 +59,7 @@ const API = {
 
     async getLatestData() {
         try {
-            const response = await axios.get('../data/latest.json');
+            const response = await axios.get(this.buildDataUrl('data/latest.json'));
             return response.data || [];
         } catch (error) {
             console.error('Failed to get latest data:', error);
@@ -53,14 +69,14 @@ const API = {
 
     async getHistoryData(stockCode) {
         try {
-            const response = await axios.get(`../data/history/${stockCode}/`, {
+            const response = await axios.get(this.buildDataUrl(`data/history/${stockCode}/`), {
                 // This will fail if there's no directory listing, so we'll need a different approach
             });
             return response.data || [];
         } catch (error) {
             // If directory listing is not available, try loading from feedback history
             try {
-                const response = await axios.get('../data/feedback_history.json');
+                const response = await axios.get(this.buildDataUrl('data/feedback_history.json'));
                 const feedbackData = response.data || {};
                 return feedbackData[stockCode] || [];
             } catch (e) {

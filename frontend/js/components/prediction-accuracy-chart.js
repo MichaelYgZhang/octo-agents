@@ -18,7 +18,7 @@ const PredictionAccuracyChart = {
         async loadHistoricalData() {
             try {
                 // Load feedback history
-                const response = await axios.get('../data/feedback_history.json');
+                const response = await axios.get(API.buildDataUrl('data/feedback_history.json'));
                 const feedbackData = response.data || {};
 
                 const stockHistory = feedbackData[this.stockCode];
