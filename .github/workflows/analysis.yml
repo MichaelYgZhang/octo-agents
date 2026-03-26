@@ -113,20 +113,18 @@ jobs:
         ref: main
         fetch-depth: 0
 
-    - name: 检出gh-pages分支的data目录
+    - name: 准备部署文件
       run: |
-        git fetch origin gh-pages
-        git checkout origin/gh-pages -- data/ || echo "No data directory found"
-
-    - name: 同步最新数据文件
-      run: |
-        # 从main分支复制最新的data文件
-        git checkout origin/main -- data/ || echo "No data on main"
+        # 复制data目录到frontend下
+        cp -r data frontend/data
         
+        # 复制其他必要文件
+        cp -r reports frontend/reports 2>/dev/null || true
+        cp -r logs frontend/logs 2>/dev/null || true
+
     - name: 部署到GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./frontend
         publish_branch: gh-pages
-        keep_files: true  # 保留现有文件（包括data目录）
