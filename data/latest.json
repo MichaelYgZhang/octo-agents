@@ -11,12 +11,12 @@
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 51.5,
-        "pb_ratio": 9.2,
-        "roe": "18.00%",
-        "gross_margin": "51.00%",
-        "net_margin": "14.00%",
-        "debt_ratio": "31.00%",
+        "pe_ratio": 38.5,
+        "pb_ratio": 11.2,
+        "roe": "20.00%",
+        "gross_margin": "38.00%",
+        "net_margin": "11.00%",
+        "debt_ratio": "48.00%",
         "industry": "互联网/科技",
         "employees": "70,000+",
         "main_business": "外卖、到店、酒旅、新业务",
@@ -75,7 +75,7 @@
           }
         }
       },
-      "timestamp": "2026-03-26T10:05:36.646300"
+      "timestamp": "2026-03-26T10:19:47.311097"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -95,7 +95,7 @@
           "volume_trend": "放量"
         }
       },
-      "timestamp": "2026-03-26T10:05:36.646238"
+      "timestamp": "2026-03-26T10:19:47.311014"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -171,7 +171,7 @@
           }
         ]
       },
-      "timestamp": "2026-03-26T10:05:36.646315"
+      "timestamp": "2026-03-26T10:19:47.311114"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -234,7 +234,7 @@
           ]
         }
       },
-      "timestamp": "2026-03-26T10:05:36.646326"
+      "timestamp": "2026-03-26T10:19:47.311125"
     },
     "overall_score": 50.5,
     "recommendation": "hold",
@@ -554,12 +554,12 @@
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 42.5,
-        "pb_ratio": 10.2,
-        "roe": "24.00%",
-        "gross_margin": "42.00%",
-        "net_margin": "15.00%",
-        "debt_ratio": "52.00%",
+        "pe_ratio": 54.5,
+        "pb_ratio": 12.2,
+        "roe": "16.00%",
+        "gross_margin": "54.00%",
+        "net_margin": "17.00%",
+        "debt_ratio": "44.00%",
         "industry": "互联网/短视频",
         "employees": "30,000+",
         "main_business": "短视频、直播、电商",
@@ -618,7 +618,7 @@
           }
         }
       },
-      "timestamp": "2026-03-26T10:05:36.648270"
+      "timestamp": "2026-03-26T10:19:47.313065"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -638,7 +638,7 @@
           "volume_trend": "缩量"
         }
       },
-      "timestamp": "2026-03-26T10:05:36.648234"
+      "timestamp": "2026-03-26T10:19:47.313029"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -714,7 +714,7 @@
           }
         ]
       },
-      "timestamp": "2026-03-26T10:05:36.648285"
+      "timestamp": "2026-03-26T10:19:47.313117"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -777,7 +777,7 @@
           ]
         }
       },
-      "timestamp": "2026-03-26T10:05:36.648294"
+      "timestamp": "2026-03-26T10:19:47.313138"
     },
     "overall_score": 63.0,
     "recommendation": "hold",
