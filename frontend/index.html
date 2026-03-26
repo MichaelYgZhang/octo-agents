@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>股票分析平台</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260326-2">
     <style>
         /* 布局样式 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f7fa; display: flex; }
         #app { display: flex; width: 100%; min-height: 100vh; }
+
+        /* 移动端body和app改为纵向布局 */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #app {
+                flex-direction: column;
+            }
+        }
 
         /* Sidebar样式 - 响应式宽度 */
         .sidebar {
