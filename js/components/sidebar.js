@@ -1,7 +1,8 @@
 // 侧边栏组件
 const Sidebar = {
     template: `
-        <div class="sidebar">
+        <div>
+            <div class="sidebar">
             <div class="logo">
                 <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
                     <svg width="50" height="50" viewBox="0 0 50 50" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
@@ -63,6 +64,7 @@ const Sidebar = {
                 </select>
             </div>
         </div>
+        </div>
     `,
     data() {
         return {
@@ -84,6 +86,8 @@ const Sidebar = {
         }
     },
     methods: {
-        navigate(page) { Store.setCurrentPage(page); }
+        navigate(page) {
+            Store.setCurrentPage(page);
+        }
     }
 };
