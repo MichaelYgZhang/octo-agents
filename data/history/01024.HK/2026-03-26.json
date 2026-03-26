@@ -10,12 +10,12 @@
     "details": {
       "valuation": "fair",
       "growth": "moderate",
-      "pe_ratio": 50.5,
-      "pb_ratio": 8.2,
-      "roe": "17.00%",
-      "gross_margin": "50.00%",
-      "net_margin": "13.00%",
-      "debt_ratio": "30.00%",
+      "pe_ratio": 42.5,
+      "pb_ratio": 10.2,
+      "roe": "19.00%",
+      "gross_margin": "42.00%",
+      "net_margin": "15.00%",
+      "debt_ratio": "32.00%",
       "industry": "互联网/短视频",
       "employees": "30,000+",
       "main_business": "短视频、直播、电商",
@@ -74,7 +74,7 @@
         }
       }
     },
-    "timestamp": "2026-03-26T15:45:32.919742"
+    "timestamp": "2026-03-26T15:51:09.155166"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -94,7 +94,7 @@
         "volume_trend": "放量"
       }
     },
-    "timestamp": "2026-03-26T15:45:32.919703"
+    "timestamp": "2026-03-26T15:51:09.155129"
   },
   "news": {
     "agent_name": "news_analyst",
@@ -170,7 +170,7 @@
         }
       ]
     },
-    "timestamp": "2026-03-26T15:45:32.919756"
+    "timestamp": "2026-03-26T15:51:09.155180"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -233,7 +233,7 @@
         ]
       }
     },
-    "timestamp": "2026-03-26T15:45:32.919768"
+    "timestamp": "2026-03-26T15:51:09.155190"
   },
   "overall_score": 63.0,
   "recommendation": "hold",
