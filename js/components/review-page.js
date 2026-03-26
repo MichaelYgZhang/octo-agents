@@ -139,11 +139,11 @@ const ReviewPage = {
         async loadReviewData() {
             try {
                 // 加载复盘报告
-                const reportsResponse = await axios.get('../data/review_reports.json');
+                const reportsResponse = await axios.get(API.buildDataUrl('data/review_reports.json'));
                 const reportsData = reportsResponse.data || {};
 
                 // 加载预测历史
-                const historyResponse = await axios.get('../data/feedback_history.json');
+                const historyResponse = await axios.get(API.buildDataUrl('data/feedback_history.json'));
                 const historyData = historyResponse.data || {};
 
                 // 获取当前股票的历史
