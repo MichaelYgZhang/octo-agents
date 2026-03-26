@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue应用诊断</title>
+</head>
+<body>
+    <h1>Vue应用诊断页面</h1>
+    <div id="app">
+        <div v-if="loading">加载中...</div>
+        <div v-else>
+            <h2>状态检查</h2>
+            <ul>
+                <li>stocks数量: {{ stocks.length }}</li>
+                <li>selectedStock: {{ selectedStock }}</li>
+                <li>currentStock存在: {{ currentStock ? '是' : '否' }}</li>
+                <li v-if="currentStock">currentStock.name: {{ currentStock.name }}</li>
+                <li v-if="currentStock && currentStock.quant">quant.score: {{ currentStock.quant.score }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // 错误捕获
+        window.onerror = function(msg, url, line, col, error) {
+            console.error('全局错误:', msg);
+            console.error('行号:', line);
+            console.error('错误对象:', error);
+            alert('错误: ' + msg + ' (行' + line + ')');
+            return false;
+        };
+
+        Vue.createApp({
+            data() {
+                return {
+                    stocks: [],
+                    selectedStock: null,
+                    loading: true
+                };
+            },
+            computed: {
+                currentStock() {
+                    console.log('计算currentStock, stocks:', this.stocks.length, 'selected:', this.selectedStock);
+                    const result = this.stocks.find(s => s.code === this.selectedStock);
+                    console.log('currentStock结果:', result ? result.name : 'null');
+                    return result;
+                }
+            },
+            async mounted() {
+                console.log('Vue应用mounted');
+                try {
+                    console.log('开始获取数据...');
+                    const response = await axios.get('../data/latest.json');
+                    console.log('数据获取成功:', response.data);
+
+                    this.stocks = response.data;
+                    if (this.stocks.length > 0) {
+                        this.selectedStock = this.stocks[0].code;
+                        console.log('设置selectedStock:', this.selectedStock);
+                    }
+
+                    this.loading = false;
+                    console.log('应用初始化完成');
+                } catch (err) {
+                    console.error('数据获取失败:', err);
+                    this.loading = false;
+                }
+            }
+        }).mount('#app');
+
+        console.log('Vue应用已创建');
+    </script>
+</body>
+</html>

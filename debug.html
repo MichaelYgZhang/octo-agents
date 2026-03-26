@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Debug - Stock Analysis</title>
+</head>
+<body>
+    <h1>Vue App Debugger</h1>
+    <div id="app"></div>
+
+    <script>
+        // Capture and log ALL errors
+        window.onerror = function(msg, url, line, col, error) {
+            console.error('❌ JavaScript Error:', msg);
+            console.error('   URL:', url);
+            console.error('   Line:', line);
+            console.error('   Error:', error);
+            alert('ERROR: ' + msg + ' at line ' + line);
+            return false;
+        };
+
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('❌ Unhandled Promise Rejection:', event.reason);
+            alert('Promise Error: ' + event.reason);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+    <script>
+        console.log('✅ Libraries loaded');
+        console.log('Vue:', Vue.version);
+        console.log('Axios:', typeof axios);
+        console.log('ECharts:', echarts.version);
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: 'Debug Test',
+                    stocks: [],
+                    loading: true,
+                    error: null
+                };
+            },
+            async mounted() {
+                console.log('📡 Vue app mounted, fetching data...');
+                try {
+                    const response = await axios.get('../data/latest.json');
+                    console.log('✅ Data fetched:', response.data);
+                    this.stocks = response.data;
+                    this.loading = false;
+                    console.log('✅ App loaded successfully');
+                    const appDiv = document.getElementById('app');
+                    const message = '✅ SUCCESS: App loaded with ' + this.stocks.length + ' stocks';
+                    appDiv.innerHTML = '<h2 style="color: green;">' + message + '</h2>';
+                } catch (err) {
+                    console.error('❌ Failed to fetch data:', err);
+                    this.error = err.message;
+                    this.loading = false;
+                    const appDiv = document.getElementById('app');
+                    appDiv.innerHTML = '<h2 style="color: red;">❌ ERROR: ' + err.message + '</h2>';
+                }
+            }
+        });
+
+        app.mount('#app');
+        console.log('✅ Vue app initialized');
+    </script>
+</body>
+</html>
