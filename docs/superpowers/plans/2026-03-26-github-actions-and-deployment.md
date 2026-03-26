@@ -138,7 +138,7 @@ jobs:
 
     - name: 判断并执行定时任务
       env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       run: |
         CURRENT_HOUR=$(date -u +"%H")
         CURRENT_MINUTE=$(date -u +"%M")
@@ -382,7 +382,7 @@ pip install -r requirements.txt
 
 3. 配置API密钥
 \`\`\`bash
-export ANTHROPIC_API_KEY="your_api_key_here"
+export DEEPSEEK_API_KEY="your_api_key_here"
 \`\`\`
 
 4. 运行分析
@@ -416,7 +416,7 @@ python3 -m http.server 8888
 ### GitHub Actions配置
 
 1. 访问 Settings → Secrets and variables → Actions
-2. 添加Secret: `ANTHROPIC_API_KEY`
+2. 添加Secret: `DEEPSEEK_API_KEY`
 3. 手动触发：Actions页面 → "股票分析自动化任务" → Run workflow
 ```
 
@@ -598,14 +598,14 @@ main() {
     if [ ! -f ".env" ]; then
         print_warning "未找到 .env 文件"
         echo "请配置 Anthropic API 密钥："
-        echo "  export ANTHROPIC_API_KEY='your_key_here'"
+        echo "  export DEEPSEEK_API_KEY='your_key_here'"
         echo ""
 
         read -p "是否现在配置？(y/n): " -n 1 -r
         echo ""
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             read -p "请输入API密钥: " API_KEY
-            echo "ANTHROPIC_API_KEY=$API_KEY" > .env
+            echo "DEEPSEEK_API_KEY=$API_KEY" > .env
             print_success "API密钥已保存"
         fi
     else
@@ -666,7 +666,7 @@ echo "✅ 在干净环境可以成功运行"
 - [ ] 访问 https://github.com/MichaelYgZhang/octo-agents/actions
 - [ ] 可以看到"股票分析自动化任务"工作流
 - [ ] 可以手动触发工作流
-- [ ] Secrets已配置 ANTHROPIC_API_KEY
+- [ ] Secrets已配置 DEEPSEEK_API_KEY
 
 ### GitHub Pages
 - [ ] 访问 https://michaelygzhang.github.io/octo-agents

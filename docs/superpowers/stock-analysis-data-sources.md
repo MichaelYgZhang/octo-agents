@@ -196,12 +196,12 @@ message = client.messages.create(
 
 ### 必需的API密钥
 
-**Claude API Key**
-- 获取地址: https://console.anthropic.com/
-- 环境变量: `ANTHROPIC_API_KEY`
+**DeepSeek API Key**
+- 获取地址: https://platform.deepseek.com/
+- 环境变量: `DEEPSEEK_API_KEY`
 - 配置方法:
   ```bash
-  export ANTHROPIC_API_KEY="your-api-key"
+  export DEEPSEEK_API_KEY="your-api-key"
   ```
 
 **GitHub Token（可选）**

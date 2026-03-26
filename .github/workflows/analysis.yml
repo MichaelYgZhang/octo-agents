@@ -36,15 +36,15 @@ jobs:
 
     - name: 验证API密钥配置
       run: |
-        if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
-          echo "::error::ANTHROPIC_API_KEY secret is not configured. Please add it in Settings → Secrets → Actions"
+        if [ -z "${{ secrets.DEEPSEEK_API_KEY }}" ]; then
+          echo "::error::DEEPSEEK_API_KEY secret is not configured. Please add it in Settings → Secrets → Actions"
           exit 1
         fi
         echo "API密钥配置验证通过"
 
     - name: 判断并执行定时任务
       env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       run: |
         CURRENT_HOUR=$(date -u +"%H")
         CURRENT_MINUTE=$(date -u +"%M")

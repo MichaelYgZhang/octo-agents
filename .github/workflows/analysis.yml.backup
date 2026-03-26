@@ -27,7 +27,7 @@ jobs:
 
     - name: 运行股票分析
       env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       run: |
         python run_local.py
 

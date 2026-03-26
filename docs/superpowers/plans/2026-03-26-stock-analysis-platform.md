@@ -816,9 +816,9 @@ class LLMClient:
 
         # Initialize API client
         if provider == "anthropic":
-            api_key = os.getenv("ANTHROPIC_API_KEY")
+            api_key = os.getenv("DEEPSEEK_API_KEY")
             if not api_key:
-                raise ValueError("ANTHROPIC_API_KEY environment variable not set")
+                raise ValueError("DEEPSEEK_API_KEY environment variable not set")
             self.client = Anthropic(api_key=api_key)
         else:
             raise ValueError(f"Unsupported provider: {provider}")
@@ -4908,7 +4908,7 @@ jobs:
 
       - name: Run analysis pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           TUSHARE_TOKEN: ${{ secrets.TUSHARE_TOKEN }}
         run: |
           python run_local.py
@@ -4985,7 +4985,7 @@ cd frontend && npm install
 
 2. 配置环境变量：
 ```bash
-export ANTHROPIC_API_KEY="your-api-key"
+export DEEPSEEK_API_KEY="your-api-key"
 export TUSHARE_TOKEN="your-token"  # 可选
 ```
 
@@ -5008,7 +5008,7 @@ npm run dev
 1. Fork本仓库
 
 2. 配置Secrets：
-   - `ANTHROPIC_API_KEY`: Anthropic API密钥
+   - `DEEPSEEK_API_KEY`: Anthropic API密钥
    - `TUSHARE_TOKEN`: Tushare令牌（可选）
 
 3. 启用GitHub Pages：
@@ -5271,7 +5271,7 @@ After implementing this plan:
 
 2. **Configure GitHub Secrets:**
    - Settings → Secrets and variables → Actions
-   - Add `ANTHROPIC_API_KEY`
+   - Add `DEEPSEEK_API_KEY`
    - Add `TUSHARE_TOKEN` (optional)
 
 3. **Enable GitHub Pages:**
