@@ -141,27 +141,32 @@ jobs:
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       run: |
         CURRENT_HOUR=$(date -u +"%H")
+        CURRENT_MINUTE=$(date -u +"%M")
         CURRENT_DAY=$(date -u +"%u")
 
         echo "当前UTC时间: $(date -u)"
-        echo "UTC小时: $CURRENT_HOUR, 星期: $CURRENT_DAY"
+        echo "UTC时间: $CURRENT_HOUR:$CURRENT_MINUTE, 星期: $CURRENT_DAY"
 
-        if [ "$CURRENT_HOUR" = "00" ]; then
+        # 任务1：UTC 0:00-0:29 - 宏观分析文章
+        if [ "$CURRENT_HOUR" = "00" ] && [ "$CURRENT_MINUTE" -ge 0 ] && [ "$CURRENT_MINUTE" -lt 30 ]; then
           echo "执行任务：生成宏观分析文章"
           python3 backend/macro_article_generator.py || echo "Task failed but continuing..."
         fi
 
-        if [ "$CURRENT_HOUR" = "08" ]; then
+        # 任务2：UTC 8:30-8:59 - 次日预测
+        if [ "$CURRENT_HOUR" = "08" ] && [ "$CURRENT_MINUTE" -ge 30 ]; then
           echo "执行任务：预测次日股价"
           python3 src/automation/daily_prediction.py || echo "Task failed but continuing..."
         fi
 
-        if [ "$CURRENT_HOUR" = "09" ]; then
+        # 任务3：UTC 9:00-9:29 - 复盘报告
+        if [ "$CURRENT_HOUR" = "09" ] && [ "$CURRENT_MINUTE" -ge 0 ] && [ "$CURRENT_MINUTE" -lt 30 ]; then
           echo "执行任务：生成复盘报告"
           python3 src/automation/scheduler.py || echo "Task failed but continuing..."
         fi
 
-        if [ "$CURRENT_HOUR" = "10" ] && [ "$CURRENT_DAY" = "5" ]; then
+        # 任务4：UTC 10:00-10:29 周五 - 周报总结
+        if [ "$CURRENT_HOUR" = "10" ] && [ "$CURRENT_MINUTE" -ge 0 ] && [ "$CURRENT_MINUTE" -lt 30 ] && [ "$CURRENT_DAY" = "5" ]; then
           echo "执行任务：生成周报总结"
           python3 -c "from src.automation.scheduler import AutomatedScheduler; s = AutomatedScheduler(); s.generate_weekly_review()" || echo "Task failed but continuing..."
         fi
@@ -190,7 +195,7 @@ jobs:
   deploy-pages:
     needs: scheduled-task
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
     steps:
     - name: 检出代码
