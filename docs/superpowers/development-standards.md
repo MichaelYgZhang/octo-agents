@@ -137,7 +137,154 @@ feat/fix: 简短描述
 
 ## 教训和改进
 
-### 问题原因
+### 问题案例记录
+
+#### 案例1：HTML标签未闭合导致页面崩溃
+**日期：** 2026-03-26
+**问题：** 添加战略分析模块时，手动复制粘贴HTML代码，没有仔细检查标签闭合，导致多了3个`</div>`标签。
+
+**错误表现：**
+- 页面完全空白
+- 浏览器控制台报错：`Uncaught TypeError: Cannot read properties of undefined (reading 'quant')`
+
+**根本原因：**
+1. HTML标签不平衡（196个`</div>` vs 193个`<div>`）
+2. Vue模板中访问`currentStock.quant`时，`currentStock`为`undefined`
+
+**修复过程：**
+1. 删除3个多余的`</div>`标签
+2. 验证标签平衡：193 = 193
+3. 问题仍然存在！
+
+**深层原因分析：**
+- Vue模板中使用了嵌套的`v-if`判断
+- `v-else-if="activeTab === 'analysis'"`块内有`<div v-if="currentStock">`
+- 当`loading`变为`false`时，外层div立即渲染
+- 但此时`currentStock`可能为`undefined`（数据还未加载完成）
+- Vue在编译模板时会评估`:class`等绑定表达式，即使`v-if`为`false`
+- 导致访问`currentStock.quant`时出错
+
+**正确修复：**
+将`currentStock`的判断移到外层：
+```html
+<!-- 错误写法 -->
+<div v-else-if="activeTab === 'analysis'" class="card">
+    <div v-if="currentStock">
+        <!-- 内容 -->
+    </div>
+</div>
+
+<!-- 正确写法 -->
+<div v-else-if="activeTab === 'analysis' && currentStock" class="card">
+    <!-- 内容 -->
+</div>
+```
+
+**预防措施：**
+1. **每次修改HTML后立即验证标签平衡**
+2. **使用编辑器的标签高亮功能**
+3. **在浏览器中测试页面是否正常显示**
+4. **提交前运行自动化验证脚本**
+5. **Vue模板中避免嵌套的`v-if`访问可能为`undefined`的对象**
+6. **在外层就做好空值判断，不要依赖内层`v-if`**
+7. **所有对`currentStock`的访问都应该在确保其存在的条件下进行**
+
+**自动化检测：**
+- 创建了验证脚本，检测HTML标签平衡
+- 检测Vue应用结构完整性
+- 检测数据加载和绑定
+- 但无法检测运行时JavaScript错误（需要浏览器实际测试）
+
+**教训：**
+- 自动化检查通过 ≠ 页面正常工作
+- 必须在浏览器中实际测试页面渲染
+- Vue模板的条件判断要谨慎设计
+- 避免在模板中访问可能为`undefined`的对象属性
+
+#### 案例2：Vue模板空值保护不足导致运行时错误
+**日期：** 2026-03-26
+**问题：** 虽然在Vue模板外层添加了`&& currentStock`判断，但某些方法在接收参数时没有空值检查，导致运行时错误。
+
+**错误表现：**
+- 浏览器控制台报错：`Uncaught TypeError: Cannot read properties of undefined (reading 'quant')`
+- 指向`getOverallConfidence`函数
+
+**根本原因：**
+1. Vue模板外层有`v-else-if="activeTab === 'prediction' && currentStock"`判断
+2. 但模板内的表达式`{{ (getOverallConfidence(currentStock) * 100).toFixed(0) }}`可能被提前评估
+3. `getOverallConfidence`函数没有空值检查
+4. 当`currentStock`为`undefined`时访问`stock.quant`出错
+
+**修复方案：**
+为所有接收`stock`参数的函数添加空值检查：
+```javascript
+getOverallConfidence(stock) {
+    if (!stock || !stock.quant || !stock.fundamental || !stock.news || !stock.risk) {
+        return 0;
+    }
+    return (
+        stock.quant.confidence * 0.25 +
+        stock.fundamental.confidence * 0.30 +
+        stock.news.confidence * 0.25 +
+        stock.risk.confidence * 0.20
+    );
+}
+```
+
+**预防措施：**
+1. **所有JavaScript函数都要添加参数空值检查**
+2. **不能完全依赖Vue模板的v-if判断**
+3. **防御式编程：假设参数可能为null/undefined**
+4. **在函数开始就返回默认值，避免深层访问时报错**
+5. **测试时传入undefined/null参数验证函数健壮性**
+
+**最佳实践：**
+```javascript
+// 好的做法：多层空值检查
+function getOverallConfidence(stock) {
+    if (!stock) return 0;  // 第一层：检查对象本身
+    if (!stock.quant || !stock.fundamental || !stock.news || !stock.risk) {
+        return 0;  // 第二层：检查嵌套属性
+    }
+    // 安全访问
+    return stock.quant.confidence * 0.25 + ...;
+}
+
+// 坏的做法：直接访问
+function getOverallConfidence(stock) {
+    return stock.quant.confidence * 0.25 + ...;  // 可能崩溃
+}
+```
+
+**验证清单：**
+- ✅ 所有接收参数的函数都有空值检查
+- ✅ 访问嵌套属性前先检查父对象
+- ✅ 为空值情况提供合理的默认返回值
+- ✅ 在浏览器中实际测试页面，检查控制台无错误
+
+#### 案例3：浏览器缓存导致Vue模板语法直接显示
+**日期：** 2026-03-26
+**问题：** 修复代码后，浏览器仍然显示原始的Vue模板语法`{{ currentStock.name }}`。
+
+**错误表现：**
+- 页面显示：`({{ currentStock.quant.score.toFixed(1) }}/100)`
+- Vue模板语法没有被渲染
+
+**根本原因：**
+1. 浏览器缓存了旧版本的HTML文件
+2. 强制刷新页面后问题解决
+
+**解决方法：**
+1. 清除浏览器缓存：`Ctrl+Shift+Delete` (Windows) 或 `Cmd+Shift+Delete` (Mac)
+2. 强制刷新页面：`Ctrl+F5` (Windows) 或 `Cmd+Shift+R` (Mac)
+3. 如果仍不work，重启HTTP服务器
+
+**预防措施：**
+- 开发时禁用浏览器缓存
+- 每次修改后强制刷新页面
+- 使用无痕模式测试（不会缓存）
+
+### 问题原因（原版）
 在添加战略分析模块时，手动复制粘贴HTML代码，没有仔细检查标签闭合，导致多了3个</div>标签。
 
 ### 预防措施
