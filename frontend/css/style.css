@@ -145,6 +145,10 @@
             .grid-2-col { grid-template-columns: 1fr; gap: 15px; }
         }
 
+        @media (max-width: 480px) {
+            .grid-2-col { gap: 12px; }
+        }
+
         .prediction-factor { background: #f9fafb; padding: 15px; border-radius: 8px; margin: 10px 0; }
 
         @media (max-width: 768px) {
@@ -323,5 +327,93 @@
         @media (max-width: 768px) {
             .card {
                 box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            }
+        }
+
+        /* Flex布局移动端优化 */
+        @media (max-width: 768px) {
+            .white-box > div[style*="display: flex"],
+            .white-box > div[style*="display:flex"] {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .white-box > div[style*="display: grid"],
+            .strategic-section div[style*="display: grid"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* 强制所有网格布局在移动端单列显示 */
+            .white-box div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* 数据源链接移动端优化 */
+        @media (max-width: 768px) {
+            .white-box a[style*="display: inline-block"] {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+        }
+
+        /* 按钮组移动端优化 */
+        @media (max-width: 768px) {
+            .white-box button,
+            .time-selector button {
+                min-width: 60px;
+            }
+        }
+
+        /* 内容区域自适应 */
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 10px;
+                width: 100%;
+            }
+        }
+
+        /* 卡片内容自适应 */
+        .card, .white-box {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        /* 文字大小移动端优化 */
+        @media (max-width: 768px) {
+            .white-box strong,
+            .metric-label,
+            .metric-value {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .white-box strong,
+            .metric-label,
+            .metric-value {
+                font-size: 12px;
+            }
+        }
+
+        /* 预测价格移动端优化 */
+        @media (max-width: 768px) {
+            .prediction-section div[style*="font-size: 32px"] {
+                font-size: 24px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prediction-section div[style*="font-size: 32px"] {
+                font-size: 20px !important;
             }
         }
