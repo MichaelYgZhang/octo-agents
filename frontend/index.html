@@ -11,21 +11,48 @@
         body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f7fa; display: flex; }
         #app { display: flex; width: 100%; min-height: 100vh; }
 
-        /* Sidebar样式 */
+        /* Sidebar样式 - 响应式宽度 */
         .sidebar {
             width: 250px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
             color: white;
             flex-shrink: 0;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        /* 中等屏幕 - 窄侧边栏 */
+        @media (max-width: 1200px) and (min-width: 769px) {
+            .sidebar {
+                width: 200px;
+                padding: 15px;
+            }
+        }
+
+        /* 平板横屏 - 更窄侧边栏 */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .sidebar {
+                width: 180px;
+                padding: 15px;
+            }
+            .sidebar .logo h1 {
+                font-size: 20px;
+            }
         }
 
         .sidebar .logo h1 { font-size: 24px; margin-bottom: 30px; }
 
+        /* 小图标文字优化 */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-item {
+                font-size: 14px;
+            }
+        }
+
         /* 移动端Sidebar - 默认隐藏 */
         @media (max-width: 768px) {
             .sidebar {
+                width: 280px;
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -33,6 +60,7 @@
                 z-index: 1000;
                 transform: translateX(-100%);
                 box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+                padding: 20px;
             }
 
             .sidebar.open {
@@ -41,6 +69,10 @@
 
             #app {
                 flex-direction: column;
+            }
+
+            .sidebar .logo h1 {
+                font-size: 22px;
             }
         }
 
@@ -53,10 +85,18 @@
             .nav-item { padding: 10px; font-size: 14px; }
         }
 
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-item { padding: 10px 8px; font-size: 14px; }
+        }
+
         .stock-selector { margin-top: 20px; }
         .stock-selector select { width: 100%; padding: 10px; border-radius: 6px; border: none; font-size: 14px; }
 
         @media (max-width: 768px) {
+            .stock-selector select { padding: 8px; font-size: 13px; }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
             .stock-selector select { padding: 8px; font-size: 13px; }
         }
 
