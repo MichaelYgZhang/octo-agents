@@ -2,22 +2,7 @@
 const Sidebar = {
     template: `
         <div>
-            <!-- 移动端遮罩层 -->
-            <div class="overlay" :class="{ active: mobileMenuOpen }" @click="closeMobileMenu"></div>
-
-            <!-- 移动端菜单按钮 -->
-            <button class="mobile-menu-btn" @click="toggleMobileMenu" v-if="!mobileMenuOpen">
-                ☰
-            </button>
-
-            <div class="sidebar" :class="{ open: mobileMenuOpen }">
-                <!-- 移动端关闭按钮 -->
-                <button v-if="isMobile"
-                        @click="closeMobileMenu"
-                        style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 18px;">
-                    ✕
-                </button>
-
+            <div class="sidebar">
             <div class="logo">
                 <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
                     <svg width="50" height="50" viewBox="0 0 50 50" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
@@ -89,8 +74,7 @@ const Sidebar = {
                 { id: 'history', icon: '📊', label: '历史预测' },
                 { id: 'review', icon: '📋', label: '复盘报告' },
                 { id: 'macro-analysis', icon: '🌍', label: '宏观分析' }
-            ],
-            isMobile: window.innerWidth <= 768
+            ]
         };
     },
     computed: {
@@ -99,33 +83,11 @@ const Sidebar = {
         selectedStock: {
             get() { return Store.selectedStock; },
             set(value) { Store.setSelectedStock(value); }
-        },
-        mobileMenuOpen() {
-            return Store.mobileMenuOpen;
         }
     },
     methods: {
         navigate(page) {
             Store.setCurrentPage(page);
-        },
-        toggleMobileMenu() {
-            Store.toggleMobileMenu();
-        },
-        closeMobileMenu() {
-            Store.closeMobileMenu();
-        },
-        handleResize() {
-            this.isMobile = window.innerWidth <= 768;
-            // 在桌面端自动关闭移动菜单
-            if (!this.isMobile && this.mobileMenuOpen) {
-                Store.closeMobileMenu();
-            }
         }
-    },
-    mounted() {
-        window.addEventListener('resize', this.handleResize);
-    },
-    beforeUnmount() {
-        window.removeEventListener('resize', this.handleResize);
     }
 };
