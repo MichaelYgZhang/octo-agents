@@ -10,12 +10,12 @@
     "details": {
       "valuation": "fair",
       "growth": "moderate",
-      "pe_ratio": 38.5,
+      "pe_ratio": 48.5,
       "pb_ratio": 11.2,
-      "roe": "20.00%",
-      "gross_margin": "38.00%",
+      "roe": "25.00%",
+      "gross_margin": "48.00%",
       "net_margin": "11.00%",
-      "debt_ratio": "48.00%",
+      "debt_ratio": "38.00%",
       "industry": "互联网/科技",
       "employees": "70,000+",
       "main_business": "外卖、到店、酒旅、新业务",
@@ -74,7 +74,7 @@
         }
       }
     },
-    "timestamp": "2026-03-26T10:19:47.311097"
+    "timestamp": "2026-03-26T10:38:19.356140"
   },
   "quant": {
     "agent_name": "quant_analyst",
@@ -94,7 +94,7 @@
         "volume_trend": "放量"
       }
     },
-    "timestamp": "2026-03-26T10:19:47.311014"
+    "timestamp": "2026-03-26T10:38:19.356075"
   },
   "news": {
     "agent_name": "news_analyst",
@@ -170,7 +170,7 @@
         }
       ]
     },
-    "timestamp": "2026-03-26T10:19:47.311114"
+    "timestamp": "2026-03-26T10:38:19.356153"
   },
   "risk": {
     "agent_name": "risk_analyst",
@@ -233,7 +233,7 @@
         ]
       }
     },
-    "timestamp": "2026-03-26T10:19:47.311125"
+    "timestamp": "2026-03-26T10:38:19.356164"
   },
   "overall_score": 50.5,
   "recommendation": "hold",
