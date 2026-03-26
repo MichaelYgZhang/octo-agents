@@ -59,15 +59,18 @@
             }
         }
 
-        /* 移动端Sidebar - 变为顶部页头 */
+        /* 移动端Sidebar - 变为顶部页头，水平布局 */
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
                 position: relative;
                 transform: none;
                 box-shadow: none;
-                padding: 15px 20px;
-                flex-direction: column;
+                padding: 10px 15px;
+                flex-direction: row;
+                display: flex;
+                align-items: center;
+                gap: 15px;
             }
 
             #app {
@@ -77,12 +80,12 @@
             .sidebar .logo {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                margin-bottom: 15px;
+                flex-shrink: 0;
+                margin-bottom: 0;
             }
 
             .sidebar .logo h1 {
-                font-size: 20px;
+                font-size: 16px;
                 margin-bottom: 0;
             }
 
@@ -92,10 +95,10 @@
 
             .nav-items {
                 display: flex;
-                overflow-x: auto;
-                margin-bottom: 15px;
+                flex-wrap: wrap;
                 gap: 5px;
-                -webkit-overflow-scrolling: touch;
+                margin-bottom: 0;
+                flex: 1;
             }
 
             .nav-item {
@@ -108,26 +111,7 @@
 
             .stock-selector {
                 margin-top: 0;
-            }
-
-            .stock-selector select {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
-                padding: 12px 15px;
-            }
-
-            .sidebar .logo h1 {
-                font-size: 18px;
-            }
-
-            .nav-item {
-                padding: 5px 10px;
-                font-size: 11px;
+                flex-shrink: 0;
             }
 
             .stock-selector select {
@@ -136,6 +120,30 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+
+            .sidebar .logo h1 {
+                font-size: 14px;
+            }
+
+            .nav-items {
+                gap: 3px;
+            }
+
+            .nav-item {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            .stock-selector select {
+                font-size: 10px;
+                padding: 4px 6px;
+            }
+        }
         .nav-items { margin-bottom: 30px; }
         .nav-item { padding: 12px; margin-bottom: 5px; cursor: pointer; border-radius: 6px; transition: all 0.3s; }
         .nav-item:hover { background: rgba(255,255,255,0.1); }
