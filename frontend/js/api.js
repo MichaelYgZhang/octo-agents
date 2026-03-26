@@ -20,6 +20,7 @@ const API = {
                 throw new Error('Invalid data format: expected array');
             }
 
+            // 更新Store（现在是响应式的）
             Store.stocks = response.data;
 
             // 初始化历史数据缓存
@@ -37,6 +38,35 @@ const API = {
             console.error('Failed to fetch stocks:', error);
         } finally {
             Store.loading = false;
+        }
+    },
+
+    async getLatestData() {
+        try {
+            const response = await axios.get('../data/latest.json');
+            return response.data || [];
+        } catch (error) {
+            console.error('Failed to get latest data:', error);
+            return [];
+        }
+    },
+
+    async getHistoryData(stockCode) {
+        try {
+            const response = await axios.get(`../data/history/${stockCode}/`, {
+                // This will fail if there's no directory listing, so we'll need a different approach
+            });
+            return response.data || [];
+        } catch (error) {
+            // If directory listing is not available, try loading from feedback history
+            try {
+                const response = await axios.get('../data/feedback_history.json');
+                const feedbackData = response.data || {};
+                return feedbackData[stockCode] || [];
+            } catch (e) {
+                console.error('Failed to get history data:', e);
+                return [];
+            }
         }
     }
 };

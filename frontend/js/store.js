@@ -1,5 +1,8 @@
-// 状态管理模块 - 使用简单的响应式对象
-const Store = {
+// 状态管理模块 - 使用Vue 3 Composition API
+// 注意：这个文件必须在Vue加载后执行
+
+// 使用Vue的reactive创建真正的响应式Store
+const Store = Vue.reactive({
     stocks: [],
     selectedStock: null,
     stockHistory: {},
@@ -30,4 +33,4 @@ const Store = {
             this.currentPage = window.location.hash.slice(1);
         }
     }
-};
+});

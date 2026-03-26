@@ -42,3 +42,38 @@
         .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .prediction-factor { background: #f9fafb; padding: 15px; border-radius: 8px; margin: 10px 0; }
         .loading { text-align: center; padding: 40px; color: #909399; }
+
+        .strategic-section {
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .strategic-section h5 {
+            color: #667eea;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .strategic-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .strategic-section li {
+            padding: 8px 0;
+            color: #6b7280;
+            font-size: 14px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .strategic-section li:last-child {
+            border-bottom: none;
+        }
+
+        button.active {
+            background: #667eea !important;
+            color: white !important;
+        }

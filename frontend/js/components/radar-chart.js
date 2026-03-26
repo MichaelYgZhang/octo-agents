@@ -14,6 +14,13 @@ const RadarChart = {
     methods: {
         updateChart() {
             if (!this.chart || !this.scores) return;
+
+            // 从嵌套对象中提取score值
+            const quantScore = this.scores.quant?.score || 0;
+            const fundamentalScore = this.scores.fundamental?.score || 0;
+            const newsScore = this.scores.news?.score || 0;
+            const riskScore = this.scores.risk?.score || 0;
+
             this.chart.setOption({
                 title: { text: '多维度评分', left: 'center' },
                 radar: {
@@ -27,7 +34,7 @@ const RadarChart = {
                 series: [{
                     type: 'radar',
                     data: [{
-                        value: [this.scores.quant, this.scores.fundamental, this.scores.news, 100 - this.scores.risk],
+                        value: [quantScore, fundamentalScore, newsScore, 100 - riskScore],
                         areaStyle: { color: 'rgba(102, 126, 234, 0.3)' }
                     }]
                 }]
