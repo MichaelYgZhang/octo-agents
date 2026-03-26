@@ -19,6 +19,10 @@
         .stock-selector { margin-top: 20px; }
         .stock-selector select { width: 100%; padding: 10px; border-radius: 6px; border: none; font-size: 14px; }
         .content { flex: 1; padding: 20px; overflow-y: auto; }
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; }
+            #app { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
