@@ -107,14 +107,22 @@ jobs:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
     steps:
-    - name: 检出代码
+    - name: 检出main分支
       uses: actions/checkout@v4
+      with:
+        ref: main
+        fetch-depth: 0
 
     - name: 检出gh-pages分支的data目录
       run: |
         git fetch origin gh-pages
         git checkout origin/gh-pages -- data/ || echo "No data directory found"
 
+    - name: 同步最新数据文件
+      run: |
+        # 从main分支复制最新的data文件
+        git checkout origin/main -- data/ || echo "No data on main"
+        
     - name: 部署到GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
