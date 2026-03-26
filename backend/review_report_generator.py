@@ -9,6 +9,7 @@ import os
 from datetime import datetime, timedelta
 from typing import Dict, List, Any
 import statistics
+import random
 
 
 class ReviewReportGenerator:
@@ -193,22 +194,22 @@ class ReviewReportGenerator:
         return [
             {
                 "agent": "量化分析师",
-                "score_change": round(statistics.uniform(-3, 5), 1),
+                "score_change": round(random.uniform(-3, 5), 1),
                 "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
             },
             {
                 "agent": "基本面分析师",
-                "score_change": round(statistics.uniform(-2, 4), 1),
+                "score_change": round(random.uniform(-2, 4), 1),
                 "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
             },
             {
                 "agent": "新闻分析师",
-                "score_change": round(statistics.uniform(-5, 6), 1),
+                "score_change": round(random.uniform(-5, 6), 1),
                 "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
             },
             {
                 "agent": "风险分析师",
-                "score_change": round(statistics.uniform(-2, 3), 1),
+                "score_change": round(random.uniform(-2, 3), 1),
                 "suggestion": "加强对系统性风险的识别，提前预警市场波动"
             }
         ]
