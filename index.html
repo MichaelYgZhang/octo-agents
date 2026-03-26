@@ -4,30 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>股票分析平台</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260326-2">
     <style>
         /* 布局样式 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #f5f7fa; display: flex; }
-        #app { display: flex; width: 100%; height: 100vh; }
-        .sidebar { width: 15%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: white; }
+        #app { display: flex; width: 100%; min-height: 100vh; }
+
+        /* 移动端body和app改为纵向布局 */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #app {
+                flex-direction: column;
+            }
+        }
+
+        /* Sidebar样式 - 响应式宽度 */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: white;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* 中等屏幕 - 窄侧边栏 */
+        @media (max-width: 1200px) and (min-width: 769px) {
+            .sidebar {
+                width: 200px;
+                padding: 15px;
+            }
+        }
+
+        /* 平板横屏 - 更窄侧边栏 */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .sidebar {
+                width: 180px;
+                padding: 15px;
+            }
+            .sidebar .logo h1 {
+                font-size: 20px;
+            }
+        }
+
         .sidebar .logo h1 { font-size: 24px; margin-bottom: 30px; }
-        .nav-items { margin-bottom: 30px; }
-        .nav-item { padding: 12px; margin-bottom: 5px; cursor: pointer; border-radius: 6px; transition: all 0.3s; }
-        .nav-item:hover { background: rgba(255,255,255,0.1); }
-        .nav-item.active { background: rgba(255,255,255,0.2); font-weight: bold; }
-        .stock-selector { margin-top: 20px; }
-        .stock-selector select { width: 100%; padding: 10px; border-radius: 6px; border: none; font-size: 14px; }
-        .content { flex: 1; padding: 20px; overflow-y: auto; }
-        /* 移动端Sidebar - 变为顶部页头，水平布局 */
+
+        /* 小图标文字优化 */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-item {
+                font-size: 14px;
+            }
+        }
+
+        /* 移动端Sidebar - 变为顶部页头 */
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
-                flex-direction: row;
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                padding: 10px 15px;
+                position: relative;
+                transform: none;
+                box-shadow: none;
+                padding: 15px 20px;
+                flex-direction: column;
             }
 
             #app {
@@ -35,12 +75,14 @@
             }
 
             .sidebar .logo {
-                flex-shrink: 0;
-                margin-bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 15px;
             }
 
             .sidebar .logo h1 {
-                font-size: 16px;
+                font-size: 20px;
                 margin-bottom: 0;
             }
 
@@ -50,21 +92,42 @@
 
             .nav-items {
                 display: flex;
-                flex-wrap: wrap;
+                overflow-x: auto;
+                margin-bottom: 15px;
                 gap: 5px;
-                margin-bottom: 0;
-                flex: 1;
+                -webkit-overflow-scrolling: touch;
             }
 
             .nav-item {
-                padding: 5px 10px;
-                font-size: 11px;
+                flex-shrink: 0;
+                padding: 8px 16px;
+                font-size: 13px;
+                white-space: nowrap;
                 margin-bottom: 0;
             }
 
             .stock-selector {
                 margin-top: 0;
-                flex-shrink: 0;
+            }
+
+            .stock-selector select {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 12px 15px;
+            }
+
+            .sidebar .logo h1 {
+                font-size: 18px;
+            }
+
+            .nav-item {
+                padding: 6px 12px;
+                font-size: 12px;
             }
 
             .stock-selector select {
@@ -73,29 +136,61 @@
             }
         }
 
+        .nav-items { margin-bottom: 30px; }
+        .nav-item { padding: 12px; margin-bottom: 5px; cursor: pointer; border-radius: 6px; transition: all 0.3s; }
+        .nav-item:hover { background: rgba(255,255,255,0.1); }
+        .nav-item.active { background: rgba(255,255,255,0.2); font-weight: bold; }
+
+        @media (max-width: 768px) {
+            .nav-item { padding: 10px; font-size: 14px; }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-item { padding: 10px 8px; font-size: 14px; }
+        }
+
+        .stock-selector { margin-top: 20px; }
+        .stock-selector select { width: 100%; padding: 10px; border-radius: 6px; border: none; font-size: 14px; }
+
+        @media (max-width: 768px) {
+            .stock-selector select { padding: 8px; font-size: 13px; }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .stock-selector select { padding: 8px; font-size: 13px; }
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+
         @media (max-width: 480px) {
-            .sidebar {
-                padding: 8px 12px;
-                gap: 10px;
+            .content {
+                padding: 10px;
             }
+        }
 
-            .sidebar .logo h1 {
-                font-size: 14px;
-            }
+        /* 移动端菜单按钮 - 隐藏，因为改为顶部页头 */
+        .mobile-menu-btn {
+            display: none;
+        }
 
-            .nav-items {
-                gap: 3px;
-            }
-
-            .nav-item {
-                padding: 4px 8px;
-                font-size: 10px;
-            }
-
-            .stock-selector select {
-                font-size: 10px;
-                padding: 4px 6px;
-            }
+        /* 遮罩层 - 移动端不需要 */
+        .overlay {
+            display: none;
         }
     </style>
 </head>

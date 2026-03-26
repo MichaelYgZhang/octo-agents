@@ -9,6 +9,7 @@ const Store = Vue.reactive({
     currentPage: 'analysis',
     loading: false,
     error: null,
+    mobileMenuOpen: false, // 移动端菜单状态
 
     setSelectedStock(code) {
         this.selectedStock = code;
@@ -19,10 +20,22 @@ const Store = Vue.reactive({
         this.currentPage = page;
         localStorage.setItem('currentPage', page);
         window.location.hash = page;
+        // 移动端选择页面后自动关闭菜单
+        if (window.innerWidth <= 768) {
+            this.mobileMenuOpen = false;
+        }
     },
 
     getCurrentStock() {
         return this.stocks.find(s => s.code === this.selectedStock);
+    },
+
+    toggleMobileMenu() {
+        this.mobileMenuOpen = !this.mobileMenuOpen;
+    },
+
+    closeMobileMenu() {
+        this.mobileMenuOpen = false;
     },
 
     init() {
