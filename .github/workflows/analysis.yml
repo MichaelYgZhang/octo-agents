@@ -2,14 +2,10 @@ name: 股票分析自动化任务
 
 on:
   schedule:
-    # 任务1：每日08:00 - 宏观分析文章
+    # 任务1：每日北京时间08:00 - 宏观分析文章
     - cron: '0 0 * * *'      # UTC 0:00 = 北京时间 08:00
-    # 任务2：每日16:30 - 预测次日股价
-    - cron: '30 8 * * *'     # UTC 8:30 = 北京时间 16:30
-    # 任务3：每日17:00 - 复盘昨日预测
-    - cron: '0 9 * * *'      # UTC 9:00 = 北京时间 17:00
-    # 任务4：每周五18:00 - 周报总结
-    - cron: '0 10 * * 5'     # UTC 10:00 周五 = 北京时间 18:00 周五
+    # 任务2：每日北京时间18:00 - 预测次日股价并复盘
+    - cron: '0 10 * * *'     # UTC 10:00 = 北京时间 18:00
   workflow_dispatch:          # 手动触发
 
 jobs:
@@ -56,37 +52,24 @@ jobs:
           python3 backend/macro_article_generator.py || FAILED=1
           python3 src/automation/daily_prediction.py || FAILED=1
           python3 src/automation/scheduler.py || FAILED=1
-          python3 -c "from src.automation.scheduler import AutomatedScheduler; s = AutomatedScheduler(); s.generate_weekly_review()" || FAILED=1
         else
-          # 正常的时间判断逻辑
+          # 简化的时间判断逻辑 - 只判断小时
           CURRENT_HOUR=$(date -u +"%H")
-          CURRENT_MINUTE=$(date -u +"%M")
-          CURRENT_DAY=$(date -u +"%u")
 
-          echo "UTC时间: $CURRENT_HOUR:$CURRENT_MINUTE, 星期: $CURRENT_DAY"
+          echo "UTC小时: $CURRENT_HOUR"
 
-          # 任务1：UTC 0:00-0:29 - 宏观分析文章
-          if [ "$CURRENT_HOUR" = "00" ] && [ "$CURRENT_MINUTE" -ge 0 ] && [ "$CURRENT_MINUTE" -lt 30 ]; then
+          # 任务1：UTC 0点 - 宏观分析文章（北京时间8:00）
+          if [ "$CURRENT_HOUR" = "00" ]; then
             echo "执行任务：生成宏观分析文章"
             python3 backend/macro_article_generator.py || FAILED=1
           fi
 
-          # 任务2：UTC 8:30-8:59 - 次日预测
-          if [ "$CURRENT_HOUR" = "08" ] && [ "$CURRENT_MINUTE" -ge 30 ]; then
+          # 任务2：UTC 10点 - 预测和复盘（北京时间18:00）
+          if [ "$CURRENT_HOUR" = "10" ]; then
             echo "执行任务：预测次日股价"
             python3 src/automation/daily_prediction.py || FAILED=1
-          fi
-
-          # 任务3：UTC 9:00-9:29 - 复盘报告
-          if [ "$CURRENT_HOUR" = "09" ] && [ "$CURRENT_MINUTE" -ge 0 ] && [ "$CURRENT_MINUTE" -lt 30 ]; then
             echo "执行任务：生成复盘报告"
             python3 src/automation/scheduler.py || FAILED=1
-          fi
-
-          # 任务4：UTC 10:00-10:29 周五 - 周报总结
-          if [ "$CURRENT_HOUR" = "10" ] && [ "$CURRENT_MINUTE" -ge 0 ] && [ "$CURRENT_MINUTE" -lt 30 ] && [ "$CURRENT_DAY" = "5" ]; then
-            echo "执行任务：生成周报总结"
-            python3 -c "from src.automation.scheduler import AutomatedScheduler; s = AutomatedScheduler(); s.generate_weekly_review()" || FAILED=1
           fi
         fi
 
@@ -127,9 +110,15 @@ jobs:
     - name: 检出代码
       uses: actions/checkout@v4
 
+    - name: 检出gh-pages分支的data目录
+      run: |
+        git fetch origin gh-pages
+        git checkout origin/gh-pages -- data/ || echo "No data directory found"
+
     - name: 部署到GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./frontend
         publish_branch: gh-pages
+        keep_files: true  # 保留现有文件（包括data目录）
