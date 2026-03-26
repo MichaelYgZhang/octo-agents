@@ -79,7 +79,8 @@ jobs:
         fi
 
         if [ $FAILED -eq 1 ]; then
-          echo "::warning::One or more tasks failed"
+          echo "::error::One or more tasks failed"
+          exit 1
         fi
 
     - name: 提交分析结果
