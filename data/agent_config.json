@@ -3,52 +3,52 @@
     "config": {
       "last_feedback": {
         "agent": "量化分析师",
-        "score_change": 3.8,
+        "score_change": -2.3,
         "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
       },
-      "feedback_date": "2026-03-27T03:30:20.704377",
+      "feedback_date": "2026-03-27T09:48:43.014913",
       "applied": true,
-      "applied_at": "2026-03-27T03:30:20.707385"
+      "applied_at": "2026-03-27T09:48:43.018033"
     },
-    "updated_at": "2026-03-27T03:30:20.707442"
+    "updated_at": "2026-03-27T09:48:43.018089"
   },
   "基本面分析师": {
     "config": {
       "last_feedback": {
         "agent": "基本面分析师",
-        "score_change": -1.5,
+        "score_change": 3.4,
         "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
       },
-      "feedback_date": "2026-03-27T03:30:20.704377",
+      "feedback_date": "2026-03-27T09:48:43.014913",
       "applied": true,
-      "applied_at": "2026-03-27T03:30:20.707639"
+      "applied_at": "2026-03-27T09:48:43.018286"
     },
-    "updated_at": "2026-03-27T03:30:20.707692"
+    "updated_at": "2026-03-27T09:48:43.018341"
   },
   "新闻分析师": {
     "config": {
       "last_feedback": {
         "agent": "新闻分析师",
-        "score_change": -4.0,
+        "score_change": -2.6,
         "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
       },
-      "feedback_date": "2026-03-27T03:30:20.704377",
+      "feedback_date": "2026-03-27T09:48:43.014913",
       "applied": true,
-      "applied_at": "2026-03-27T03:30:20.708006"
+      "applied_at": "2026-03-27T09:48:43.018588"
     },
-    "updated_at": "2026-03-27T03:30:20.708058"
+    "updated_at": "2026-03-27T09:48:43.018664"
   },
   "风险分析师": {
     "config": {
       "last_feedback": {
         "agent": "风险分析师",
-        "score_change": -1.0,
+        "score_change": -1.2,
         "suggestion": "加强对系统性风险的识别，提前预警市场波动"
       },
-      "feedback_date": "2026-03-27T03:30:20.704377",
+      "feedback_date": "2026-03-27T09:48:43.014913",
       "applied": true,
-      "applied_at": "2026-03-27T03:30:20.708379"
+      "applied_at": "2026-03-27T09:48:43.018847"
     },
-    "updated_at": "2026-03-27T03:30:20.708432"
+    "updated_at": "2026-03-27T09:48:43.018897"
   }
 }
