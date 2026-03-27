@@ -5,18 +5,18 @@
     "date": "2026-03-27",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 60.0,
+      "score": 75.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 46.5,
-        "pb_ratio": 9.2,
-        "roe": "13.00%",
-        "gross_margin": "46.00%",
-        "net_margin": "9.00%",
-        "debt_ratio": "26.00%",
+        "pe_ratio": 44.5,
+        "pb_ratio": 12.2,
+        "roe": "26.00%",
+        "gross_margin": "44.00%",
+        "net_margin": "17.00%",
+        "debt_ratio": "54.00%",
         "industry": "互联网/科技",
         "employees": "70,000+",
         "main_business": "外卖、到店、酒旅、新业务",
@@ -75,7 +75,7 @@
           }
         }
       },
-      "timestamp": "2026-03-27T09:48:42.848536"
+      "timestamp": "2026-03-27T10:50:53.923052"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -95,7 +95,7 @@
           "volume_trend": "放量"
         }
       },
-      "timestamp": "2026-03-27T09:48:42.848473"
+      "timestamp": "2026-03-27T10:50:53.922989"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -171,7 +171,7 @@
           }
         ]
       },
-      "timestamp": "2026-03-27T09:48:42.848550"
+      "timestamp": "2026-03-27T10:50:53.923066"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -234,9 +234,9 @@
           ]
         }
       },
-      "timestamp": "2026-03-27T09:48:42.848562"
+      "timestamp": "2026-03-27T10:50:53.923076"
     },
-    "overall_score": 52.25,
+    "overall_score": 56.75,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
@@ -554,12 +554,12 @@
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 53.5,
-        "pb_ratio": 11.2,
-        "roe": "20.00%",
-        "gross_margin": "53.00%",
-        "net_margin": "16.00%",
-        "debt_ratio": "33.00%",
+        "pe_ratio": 44.5,
+        "pb_ratio": 12.2,
+        "roe": "21.00%",
+        "gross_margin": "44.00%",
+        "net_margin": "17.00%",
+        "debt_ratio": "34.00%",
         "industry": "互联网/短视频",
         "employees": "30,000+",
         "main_business": "短视频、直播、电商",
@@ -618,7 +618,7 @@
           }
         }
       },
-      "timestamp": "2026-03-27T09:48:42.850494"
+      "timestamp": "2026-03-27T10:50:53.924965"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -638,7 +638,7 @@
           "volume_trend": "放量"
         }
       },
-      "timestamp": "2026-03-27T09:48:42.850458"
+      "timestamp": "2026-03-27T10:50:53.924929"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -714,7 +714,7 @@
           }
         ]
       },
-      "timestamp": "2026-03-27T09:48:42.850508"
+      "timestamp": "2026-03-27T10:50:53.924979"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -777,7 +777,7 @@
           ]
         }
       },
-      "timestamp": "2026-03-27T09:48:42.850519"
+      "timestamp": "2026-03-27T10:50:53.924989"
     },
     "overall_score": 63.0,
     "recommendation": "hold",
