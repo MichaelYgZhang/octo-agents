@@ -25,9 +25,6 @@ const HistoryPage = {
                     <span class="metric-value">{{ (averageReturn * 100).toFixed(2) }}%</span>
                 </div>
 
-                <!-- 准确率图表 -->
-                <div ref="chartContainer" style="height: 300px; margin-top: 20px;"></div>
-
                 <!-- 预测价格 vs 实际收盘价对比图表 -->
                 <div class="white-box" style="margin-top: 30px;">
                     <h4>📈 预测价格 vs 实际收盘价对比</h4>
@@ -51,7 +48,6 @@ const HistoryPage = {
     `,
     data() {
         return {
-            chart: null,
             historicalData: []
         };
     },
@@ -70,28 +66,9 @@ const HistoryPage = {
         }
     },
     mounted() {
-        this.initChart();
-    },
-    beforeUnmount() {
-        this.chart?.dispose();
+        this.loadHistoricalData();
     },
     methods: {
-        initChart() {
-            if (!this.$refs.chartContainer) return;
-
-            this.chart = echarts.init(this.$refs.chartContainer);
-            this.updateChart();
-            window.addEventListener('resize', () => this.chart?.resize());
-        },
-        updateChart() {
-            if (!this.chart || !this.currentStock) return;
-
-            // Load historical prediction data
-            this.loadHistoricalData().then(() => {
-                this.renderChart();
-            });
-        },
-
         async loadHistoricalData() {
             try {
                 const response = await axios.get(API.buildDataUrl('data/feedback_history.json'));
@@ -99,88 +76,12 @@ const HistoryPage = {
                 this.historicalData = feedbackData[this.currentStock.code] || [];
             } catch (error) {
                 console.error('Failed to load historical data:', error);
-                this.historicalData = [];
             }
-        },
-
-        renderChart() {
-            if (!this.chart || !this.currentStock) return;
-
-            const dates = [];
-            const accuracyData = [];
-
-            // Sort by date
-            const sortedData = [...this.historicalData].sort((a, b) => new Date(a.date) - new Date(b.date));
-
-            // Calculate accuracy for each prediction
-            sortedData.forEach(item => {
-                if (item.predicted_price && item.actual_price && item.predicted_price > 0) {
-                    const error = Math.abs(item.predicted_price - item.actual_price) / item.actual_price;
-                    const accuracy = Math.max(0, (1 - error) * 100);
-
-                    dates.push(item.date);
-                    accuracyData.push(accuracy);
-                }
-            });
-
-            // If no real data, show placeholder
-            if (dates.length === 0) {
-                for (let i = 6; i >= 0; i--) {
-                    const date = new Date();
-                    date.setDate(date.getDate() - i);
-                    dates.push(date.toISOString().split('T')[0]);
-                    accuracyData.push(75 + Math.random() * 10);
-                }
-            }
-
-            this.chart.setOption({
-                title: {
-                    text: '历史预测准确率趋势',
-                    left: 'center'
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    formatter: params => {
-                        return `${params[0].axisValue}<br/>准确率: ${params[0].value.toFixed(1)}%`;
-                    }
-                },
-                xAxis: {
-                    type: 'category',
-                    data: dates,
-                    axisLabel: { rotate: 45 }
-                },
-                yAxis: {
-                    type: 'value',
-                    name: '准确率 (%)',
-                    min: 0,
-                    max: 100,
-                    axisLabel: { formatter: '{value}%' }
-                },
-                series: [{
-                    type: 'line',
-                    data: accuracyData,
-                    smooth: true,
-                    lineStyle: { color: '#667eea', width: 3 },
-                    areaStyle: {
-                        color: {
-                            type: 'linear',
-                            x: 0, y: 0, x2: 0, y2: 1,
-                            colorStops: [
-                                { offset: 0, color: 'rgba(102, 126, 234, 0.3)' },
-                                { offset: 1, color: 'rgba(102, 126, 234, 0.05)' }
-                            ]
-                        }
-                    }
-                }],
-                grid: { left: '10%', right: '10%', bottom: '18%' }
-            });
         }
     },
     watch: {
         currentStock() {
-            this.$nextTick(() => {
-                this.updateChart();
-            });
+            this.loadHistoricalData();
         }
     }
 };

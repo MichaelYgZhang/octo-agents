@@ -2,21 +2,21 @@
   {
     "code": "03690.HK",
     "name": "美团",
-    "date": "2026-03-26",
+    "date": "2026-03-27",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 75.0,
+      "score": 60.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 42.5,
-        "pb_ratio": 10.2,
-        "roe": "19.00%",
-        "gross_margin": "42.00%",
-        "net_margin": "15.00%",
-        "debt_ratio": "32.00%",
+        "pe_ratio": 36.5,
+        "pb_ratio": 9.2,
+        "roe": "13.00%",
+        "gross_margin": "36.00%",
+        "net_margin": "9.00%",
+        "debt_ratio": "26.00%",
         "industry": "互联网/科技",
         "employees": "70,000+",
         "main_business": "外卖、到店、酒旅、新业务",
@@ -75,7 +75,7 @@
           }
         }
       },
-      "timestamp": "2026-03-26T16:18:26.348490"
+      "timestamp": "2026-03-27T01:25:33.226952"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -95,7 +95,7 @@
           "volume_trend": "放量"
         }
       },
-      "timestamp": "2026-03-26T16:18:26.348425"
+      "timestamp": "2026-03-27T01:25:33.226889"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -171,7 +171,7 @@
           }
         ]
       },
-      "timestamp": "2026-03-26T16:18:26.348505"
+      "timestamp": "2026-03-27T01:25:33.226967"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -234,9 +234,9 @@
           ]
         }
       },
-      "timestamp": "2026-03-26T16:18:26.348516"
+      "timestamp": "2026-03-27T01:25:33.226978"
     },
-    "overall_score": 56.75,
+    "overall_score": 52.25,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
@@ -545,21 +545,21 @@
   {
     "code": "01024.HK",
     "name": "快手",
-    "date": "2026-03-26",
+    "date": "2026-03-27",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 65.0,
+      "score": 75.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 42.5,
-        "pb_ratio": 10.2,
-        "roe": "14.00%",
-        "gross_margin": "42.00%",
-        "net_margin": "15.00%",
-        "debt_ratio": "42.00%",
+        "pe_ratio": 38.5,
+        "pb_ratio": 11.2,
+        "roe": "20.00%",
+        "gross_margin": "38.00%",
+        "net_margin": "11.00%",
+        "debt_ratio": "48.00%",
         "industry": "互联网/短视频",
         "employees": "30,000+",
         "main_business": "短视频、直播、电商",
@@ -618,7 +618,7 @@
           }
         }
       },
-      "timestamp": "2026-03-26T16:18:26.350427"
+      "timestamp": "2026-03-27T01:25:33.228937"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -638,7 +638,7 @@
           "volume_trend": "放量"
         }
       },
-      "timestamp": "2026-03-26T16:18:26.350391"
+      "timestamp": "2026-03-27T01:25:33.228900"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -714,7 +714,7 @@
           }
         ]
       },
-      "timestamp": "2026-03-26T16:18:26.350441"
+      "timestamp": "2026-03-27T01:25:33.228952"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -777,9 +777,9 @@
           ]
         }
       },
-      "timestamp": "2026-03-26T16:18:26.350451"
+      "timestamp": "2026-03-27T01:25:33.228962"
     },
-    "overall_score": 60.0,
+    "overall_score": 63.0,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
