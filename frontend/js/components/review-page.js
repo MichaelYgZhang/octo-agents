@@ -16,12 +16,6 @@ const ReviewPage = {
                 </div>
             </div>
 
-            <!-- 预测准确率对比图表 -->
-            <div class="white-box" style="margin-bottom: 20px;">
-                <h4 style="color: #667eea; margin-bottom: 15px;">📈 预测价格 vs 实际收盘价对比</h4>
-                <prediction-accuracy-chart :stock-code="currentStock.code"></prediction-accuracy-chart>
-            </div>
-
             <!-- 复盘报告 -->
             <div class="white-box">
                 <h4>📊 {{ periodLabel }}复盘总结</h4>
@@ -108,9 +102,6 @@ const ReviewPage = {
             <p style="text-align: center; color: #909399;">请选择一支股票查看复盘报告</p>
         </div>
     `,
-    components: {
-        'prediction-accuracy-chart': PredictionAccuracyChart
-    },
     data() {
         return {
             selectedPeriod: 'daily',
