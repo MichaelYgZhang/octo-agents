@@ -36,15 +36,22 @@ const PredictionAccuracyChart = {
                 const predictions = [];
                 const actuals = [];
 
-                // Get last 7 days of data
-                const recentData = stockHistory.slice(-7);
+                // Filter valid records (both predicted and actual prices must be valid)
+                const validRecords = stockHistory.filter(item => {
+                    const hasValidPred = item.predicted_price && item.predicted_price !== 0;
+                    const hasValidActual = item.actual_price && item.actual_price !== null && item.actual_price !== 0;
+                    return hasValidPred && hasValidActual;
+                });
 
-                recentData.forEach(item => {
-                    if (item.predicted_price && item.actual_price) {
-                        dates.push(item.date);
-                        predictions.push(item.predicted_price);
-                        actuals.push(item.actual_price);
-                    }
+                console.log(`Found ${validRecords.length} valid records out of ${stockHistory.length} total`);
+
+                // Take last 7 valid records
+                const recentValid = validRecords.slice(-7);
+
+                recentValid.forEach(item => {
+                    dates.push(item.date);
+                    predictions.push(item.predicted_price);
+                    actuals.push(item.actual_price);
                 });
 
                 console.log('Loaded prediction data:', { dates, predictions, actuals });
