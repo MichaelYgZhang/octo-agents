@@ -66,6 +66,8 @@ jobs:
 
           # 任务2：UTC 10点 - 预测和复盘（北京时间18:00）
           if [ "$CURRENT_HOUR" = "10" ]; then
+            echo "执行任务：更新昨日预测的实际价格"
+            python3 src/automation/update_actual_prices.py || FAILED=1
             echo "执行任务：预测次日股价"
             python3 src/automation/daily_prediction.py || FAILED=1
             echo "执行任务：生成复盘报告"

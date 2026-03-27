@@ -82,9 +82,8 @@ class ReviewReportGenerator:
 
     def _filter_by_period(self, history: List[Dict], period: str) -> List[Dict]:
         """根据时间周期筛选数据"""
-        now = datetime.now()
         period_days = {
-            "daily": 1,
+            "daily": 7,      # Use last 7 days for daily review to capture enough data
             "weekly": 7,
             "biweekly": 14,
             "monthly": 30,
@@ -93,7 +92,7 @@ class ReviewReportGenerator:
         }
 
         days = period_days.get(period, 7)
-        start_date = now - timedelta(days=days)
+        start_date = datetime.now() - timedelta(days=days)
 
         return [
             item for item in history
@@ -107,11 +106,13 @@ class ReviewReportGenerator:
         correct_direction = 0
 
         for item in history:
-            if not (item.get("predicted_price") and item.get("actual_price")):
-                continue
+            # Only process records with valid predicted_price and actual_price
+            predicted = item.get("predicted_price")
+            actual = item.get("actual_price")
 
-            predicted = item["predicted_price"]
-            actual = item["actual_price"]
+            # Skip if either is missing, None, or zero
+            if not (predicted and actual and predicted != 0 and actual != 0):
+                continue
 
             error = abs(predicted - actual) / actual * 100
             errors.append(error)
@@ -140,11 +141,14 @@ class ReviewReportGenerator:
         discrepancies = []
 
         for item in history:
-            if not (item.get("predicted_price") and item.get("actual_price")):
+            # Only process records with valid predicted_price and actual_price
+            predicted = item.get("predicted_price")
+            actual = item.get("actual_price")
+
+            # Skip if either is missing, None, or zero
+            if not (predicted and actual and predicted != 0 and actual != 0):
                 continue
 
-            predicted = item["predicted_price"]
-            actual = item["actual_price"]
             error = abs(predicted - actual) / actual * 100
 
             # 只记录误差超过3%的情况

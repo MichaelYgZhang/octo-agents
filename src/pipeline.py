@@ -98,8 +98,15 @@ def run_analysis():
 
     # Step 5: Feedback learning
     logger.info("Step 5: Recording predictions for feedback...")
+    from .utils.price_predictor import predict_price
     feedback_learner = FeedbackLearner()
     for result in all_results:
+        # Calculate predicted price before recording
+        if result.get("stock_history"):
+            latest_price = result["stock_history"][-1]["close"]
+            predicted_price = predict_price(result, latest_price)
+            result["predicted_price"] = round(predicted_price, 2)
+
         # Record new prediction
         feedback_learner.record_prediction(result["code"], result)
 
