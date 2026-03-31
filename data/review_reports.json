@@ -2079,11 +2079,127 @@
         "调整模型参数",
         "优化预测逻辑"
       ]
+    },
+    {
+      "id": "review_20260331_105259",
+      "stock_code": "03690.HK",
+      "period": "daily",
+      "generated_at": "2026-03-31T10:52:59.419066",
+      "date_range": {
+        "start": "2026-03-25",
+        "end": "2026-03-31"
+      },
+      "metrics": {
+        "accuracy": 96.82926867475973,
+        "prediction_count": 6,
+        "avg_error": 3.170731325240267,
+        "correct_direction": 4,
+        "total_predictions": 4
+      },
+      "discrepancies": [
+        {
+          "date": "2026-03-25",
+          "predicted": 82.0,
+          "actual": 90.0,
+          "error": 8.88888888888889,
+          "reason": "预测偏向保守，实际市场表现强劲。建议增加新闻舆情权重，提高对突发事件响应。"
+        }
+      ],
+      "agent_feedback": [
+        {
+          "agent": "量化分析师",
+          "score_change": 2.2,
+          "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
+        },
+        {
+          "agent": "基本面分析师",
+          "score_change": -0.6,
+          "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
+        },
+        {
+          "agent": "新闻分析师",
+          "score_change": 0.3,
+          "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
+        },
+        {
+          "agent": "风险分析师",
+          "score_change": 1.4,
+          "suggestion": "加强对系统性风险的识别，提前预警市场波动"
+        }
+      ],
+      "suggestions": [
+        "建立财报日历系统，提前预警重要事件",
+        "增加大盘走势权重，提高系统性风险识别能力",
+        "优化各Agent之间的信息共享和协同决策能力"
+      ],
+      "action_items": [
+        "更新数据源配置",
+        "调整模型参数",
+        "优化预测逻辑"
+      ]
+    },
+    {
+      "id": "review_20260331_105259",
+      "stock_code": "01024.HK",
+      "period": "daily",
+      "generated_at": "2026-03-31T10:52:59.423865",
+      "date_range": {
+        "start": "2026-03-25",
+        "end": "2026-03-31"
+      },
+      "metrics": {
+        "accuracy": 97.88719974825875,
+        "prediction_count": 6,
+        "avg_error": 2.112800251741246,
+        "correct_direction": 4,
+        "total_predictions": 4
+      },
+      "discrepancies": [
+        {
+          "date": "2026-03-28",
+          "predicted": 47.28,
+          "actual": 45.6,
+          "error": 3.6842105263157885,
+          "reason": "预测过于乐观，未能及时捕捉市场调整信号。建议加强风险控制模块的敏感性。"
+        }
+      ],
+      "agent_feedback": [
+        {
+          "agent": "量化分析师",
+          "score_change": 3.0,
+          "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
+        },
+        {
+          "agent": "基本面分析师",
+          "score_change": 1.0,
+          "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
+        },
+        {
+          "agent": "新闻分析师",
+          "score_change": 5.7,
+          "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
+        },
+        {
+          "agent": "风险分析师",
+          "score_change": -1.4,
+          "suggestion": "加强对系统性风险的识别，提前预警市场波动"
+        }
+      ],
+      "suggestions": [
+        "建立财报日历系统，提前预警重要事件",
+        "增加大盘走势权重，提高系统性风险识别能力",
+        "优化各Agent之间的信息共享和协同决策能力"
+      ],
+      "action_items": [
+        "更新数据源配置",
+        "调整模型参数",
+        "优化预测逻辑"
+      ]
     }
   ],
   "summary": {
-    "total_reports": 40,
-    "avg_accuracy": 48.40518595648477,
-    "last_updated": "2026-03-29T10:33:43.945901"
+    "total_reports": 42,
+    "avg_accuracy": 50.73628349243832,
+    "last_updated": "2026-03-31T10:52:59.424501"
   }
 }
