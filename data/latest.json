@@ -2,21 +2,21 @@
   {
     "code": "03690.HK",
     "name": "美团",
-    "date": "2026-04-01",
+    "date": "2026-04-02",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 65.0,
+      "score": 70.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 41.5,
-        "pb_ratio": 9.2,
-        "roe": "13.00%",
-        "gross_margin": "41.00%",
-        "net_margin": "14.00%",
-        "debt_ratio": "41.00%",
+        "pe_ratio": 45.5,
+        "pb_ratio": 8.2,
+        "roe": "17.00%",
+        "gross_margin": "45.00%",
+        "net_margin": "8.00%",
+        "debt_ratio": "45.00%",
         "industry": "互联网/科技",
         "employees": "70,000+",
         "main_business": "外卖、到店、酒旅、新业务",
@@ -75,7 +75,7 @@
           }
         }
       },
-      "timestamp": "2026-04-01T10:56:53.285484"
+      "timestamp": "2026-04-02T10:51:42.704469"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -84,18 +84,18 @@
       "summary": "Quantitative analysis: buy",
       "details": {
         "signal": "buy",
-        "ma5": 85.95000000000002,
-        "rsi": 58.99513776337115,
+        "ma5": 84.34,
+        "rsi": 58.42696629213483,
         "trend": "up",
         "volume_analysis": {
-          "avg_volume": 61083777.63333333,
+          "avg_volume": 59689203.86666667,
           "max_volume": 252756064,
           "min_volume": 18836697,
-          "avg_amount": 4976396398.766666,
+          "avg_amount": 4862867912.233334,
           "volume_trend": "缩量"
         }
       },
-      "timestamp": "2026-04-01T10:56:53.285420"
+      "timestamp": "2026-04-02T10:51:42.704404"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -171,7 +171,7 @@
           }
         ]
       },
-      "timestamp": "2026-04-01T10:56:53.285498"
+      "timestamp": "2026-04-02T10:51:42.704483"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -234,22 +234,12 @@
           ]
         }
       },
-      "timestamp": "2026-04-01T10:56:53.285509"
+      "timestamp": "2026-04-02T10:51:42.704494"
     },
-    "overall_score": 62.5,
+    "overall_score": 64.0,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
-      {
-        "code": "03690.HK",
-        "date": "2026-02-13",
-        "open": 84.05,
-        "close": 82.15,
-        "high": 84.25,
-        "low": 80.8,
-        "volume": 99656113,
-        "amount": 8163046696.0
-      },
       {
         "code": "03690.HK",
         "date": "2026-02-16",
@@ -539,27 +529,37 @@
         "low": 82.5,
         "volume": 41291471,
         "amount": 3443633182.0
+      },
+      {
+        "code": "03690.HK",
+        "date": "2026-04-01",
+        "open": 85.0,
+        "close": 81.95,
+        "high": 85.6,
+        "low": 80.95,
+        "volume": 57818900,
+        "amount": 4757192100.0
       }
     ]
   },
   {
     "code": "01024.HK",
     "name": "快手",
-    "date": "2026-04-01",
+    "date": "2026-04-02",
     "fundamental": {
       "agent_name": "fundamental_analyst",
-      "score": 65.0,
+      "score": 75.0,
       "confidence": 0.6,
       "summary": "Fundamental analysis completed",
       "details": {
         "valuation": "fair",
         "growth": "moderate",
-        "pe_ratio": 48.5,
-        "pb_ratio": 11.2,
-        "roe": "15.00%",
-        "gross_margin": "48.00%",
-        "net_margin": "11.00%",
-        "debt_ratio": "28.00%",
+        "pe_ratio": 49.5,
+        "pb_ratio": 12.2,
+        "roe": "26.00%",
+        "gross_margin": "49.00%",
+        "net_margin": "12.00%",
+        "debt_ratio": "39.00%",
         "industry": "互联网/短视频",
         "employees": "30,000+",
         "main_business": "短视频、直播、电商",
@@ -618,7 +618,7 @@
           }
         }
       },
-      "timestamp": "2026-04-01T10:56:53.287466"
+      "timestamp": "2026-04-02T10:51:42.706551"
     },
     "quant": {
       "agent_name": "quant_analyst",
@@ -627,18 +627,18 @@
       "summary": "Quantitative analysis: buy",
       "details": {
         "signal": "buy",
-        "ma5": 46.974,
-        "rsi": 13.057773602630292,
+        "ma5": 45.604,
+        "rsi": 17.77163904235725,
         "trend": "up",
         "volume_analysis": {
-          "avg_volume": 40725094.63333333,
+          "avg_volume": 41124449.6,
           "max_volume": 197726011,
           "min_volume": 10994774,
-          "avg_amount": 2275608851.6,
+          "avg_amount": 2271484635.4333334,
           "volume_trend": "缩量"
         }
       },
-      "timestamp": "2026-04-01T10:56:53.287429"
+      "timestamp": "2026-04-02T10:51:42.706515"
     },
     "news": {
       "agent_name": "news_analyst",
@@ -714,7 +714,7 @@
           }
         ]
       },
-      "timestamp": "2026-04-01T10:56:53.287480"
+      "timestamp": "2026-04-02T10:51:42.706565"
     },
     "risk": {
       "agent_name": "risk_analyst",
@@ -777,22 +777,12 @@
           ]
         }
       },
-      "timestamp": "2026-04-01T10:56:53.287491"
+      "timestamp": "2026-04-02T10:51:42.706576"
     },
-    "overall_score": 60.0,
+    "overall_score": 63.0,
     "recommendation": "hold",
     "risk_level": "medium",
     "stock_history": [
-      {
-        "code": "01024.HK",
-        "date": "2026-02-13",
-        "open": 68.15,
-        "close": 68.45,
-        "high": 68.75,
-        "low": 67.85,
-        "volume": 31010133,
-        "amount": 2114921521.0
-      },
       {
         "code": "01024.HK",
         "date": "2026-02-16",
@@ -1082,6 +1072,16 @@
         "low": 44.6,
         "volume": 35425207,
         "amount": 1600158694.0
+      },
+      {
+        "code": "01024.HK",
+        "date": "2026-04-01",
+        "open": 46.8,
+        "close": 46.2,
+        "high": 46.98,
+        "low": 45.88,
+        "volume": 42990782,
+        "amount": 1991195036.0
       }
     ]
   }
