@@ -2701,11 +2701,141 @@
         "调整模型参数",
         "优化预测逻辑"
       ]
+    },
+    {
+      "id": "review_20260405_103357",
+      "stock_code": "03690.HK",
+      "period": "daily",
+      "generated_at": "2026-04-05T10:33:57.307003",
+      "date_range": {
+        "start": "2026-03-31",
+        "end": "2026-04-05"
+      },
+      "metrics": {
+        "accuracy": 97.36896948488751,
+        "prediction_count": 6,
+        "avg_error": 2.6310305151124913,
+        "correct_direction": 5,
+        "total_predictions": 5
+      },
+      "discrepancies": [
+        {
+          "date": "2026-03-31",
+          "predicted": 85.76,
+          "actual": 82.95,
+          "error": 3.38758288125377,
+          "reason": "市场整体下行趋势明显，模型预测幅度不足。建议加强风险控制模块的敏感性。"
+        },
+        {
+          "date": "2026-04-01",
+          "predicted": 85.02,
+          "actual": 81.95,
+          "error": 3.746186699206825,
+          "reason": "预测过于乐观，未能及时捕捉市场调整信号。建议加强风险控制模块的敏感性。"
+        },
+        {
+          "date": "2026-04-02",
+          "predicted": 84.24,
+          "actual": 80.25,
+          "error": 4.971962616822424,
+          "reason": "预测过于乐观，未能及时捕捉市场调整信号。建议加强风险控制模块的敏感性。"
+        }
+      ],
+      "agent_feedback": [
+        {
+          "agent": "量化分析师",
+          "score_change": 2.8,
+          "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
+        },
+        {
+          "agent": "基本面分析师",
+          "score_change": 3.0,
+          "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
+        },
+        {
+          "agent": "新闻分析师",
+          "score_change": -2.2,
+          "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
+        },
+        {
+          "agent": "风险分析师",
+          "score_change": -0.2,
+          "suggestion": "加强对系统性风险的识别，提前预警市场波动"
+        }
+      ],
+      "suggestions": [
+        "建立财报日历系统，提前预警重要事件",
+        "增加大盘走势权重，提高系统性风险识别能力",
+        "优化各Agent之间的信息共享和协同决策能力"
+      ],
+      "action_items": [
+        "更新数据源配置",
+        "调整模型参数",
+        "优化预测逻辑"
+      ]
+    },
+    {
+      "id": "review_20260405_103357",
+      "stock_code": "01024.HK",
+      "period": "daily",
+      "generated_at": "2026-04-05T10:33:57.313712",
+      "date_range": {
+        "start": "2026-03-31",
+        "end": "2026-04-05"
+      },
+      "metrics": {
+        "accuracy": 98.1047641663964,
+        "prediction_count": 6,
+        "avg_error": 1.8952358336036048,
+        "correct_direction": 5,
+        "total_predictions": 5
+      },
+      "discrepancies": [
+        {
+          "date": "2026-04-02",
+          "predicted": 47.4,
+          "actual": 44.9,
+          "error": 5.56792873051225,
+          "reason": "预测过于乐观，未能及时捕捉市场调整信号。建议加强风险控制模块的敏感性。"
+        }
+      ],
+      "agent_feedback": [
+        {
+          "agent": "量化分析师",
+          "score_change": -2.8,
+          "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
+        },
+        {
+          "agent": "基本面分析师",
+          "score_change": 3.5,
+          "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
+        },
+        {
+          "agent": "新闻分析师",
+          "score_change": 1.6,
+          "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
+        },
+        {
+          "agent": "风险分析师",
+          "score_change": 1.2,
+          "suggestion": "加强对系统性风险的识别，提前预警市场波动"
+        }
+      ],
+      "suggestions": [
+        "建立财报日历系统，提前预警重要事件",
+        "增加大盘走势权重，提高系统性风险识别能力",
+        "优化各Agent之间的信息共享和协同决策能力"
+      ],
+      "action_items": [
+        "更新数据源配置",
+        "调整模型参数",
+        "优化预测逻辑"
+      ]
     }
   ],
   "summary": {
-    "total_reports": 50,
-    "avg_accuracy": 58.22695737962338,
-    "last_updated": "2026-04-04T10:33:57.728338"
+    "total_reports": 52,
+    "avg_accuracy": 59.74656928139332,
+    "last_updated": "2026-04-05T10:33:57.314580"
   }
 }
