@@ -1,0 +1,543 @@
+{
+  "code": "01024.HK",
+  "name": "快手",
+  "date": "2026-04-07",
+  "fundamental": {
+    "agent_name": "fundamental_analyst",
+    "score": 70.0,
+    "confidence": 0.6,
+    "summary": "Fundamental analysis completed",
+    "details": {
+      "valuation": "fair",
+      "growth": "moderate",
+      "pe_ratio": 47.5,
+      "pb_ratio": 10.2,
+      "roe": "24.00%",
+      "gross_margin": "47.00%",
+      "net_margin": "10.00%",
+      "debt_ratio": "37.00%",
+      "industry": "互联网/短视频",
+      "employees": "30,000+",
+      "main_business": "短视频、直播、电商",
+      "strategic_analysis": {
+        "china_context": {
+          "title": "中国国情背景",
+          "points": [
+            "短视频用户渗透率超90%，行业进入存量竞争",
+            "内容监管趋严，合规成本上升",
+            "乡村振兴战略，下沉市场价值凸显",
+            "直播电商规范化发展，增长空间依然巨大",
+            "数字经济出海政策支持，海外市场机会增多"
+          ]
+        },
+        "tech_strength": {
+          "title": "技术实力分析",
+          "score": 80,
+          "details": [
+            "推荐算法：精准内容推荐，用户粘性强",
+            "视频技术：自研编解码技术，成本优势明显",
+            "直播技术：低延迟直播技术，电商转化率高",
+            "AI能力：内容审核AI、虚拟主播技术",
+            "研发投入：年研发投入超150亿，持续加码AI"
+          ]
+        },
+        "leadership_style": {
+          "title": "管理层风格（宿华、程一笑）",
+          "characteristics": [
+            "技术背景深厚：创始人都是工程师出身，重视产品技术",
+            "用户导向：专注用户体验，社区氛围维护",
+            "稳健发展：相比竞品更注重盈利能力",
+            "普惠理念：重视下沉市场和普通创作者",
+            "组织变革：近期进行组织架构调整，提升效率"
+          ]
+        },
+        "future_direction": {
+          "title": "下一阶段发力方向预测",
+          "directions": [
+            "电商业务：货架电商+直播电商双轮驱动",
+            "广告业务：内循环广告占比提升，商业化效率优化",
+            "海外市场：巴西、印尼等重点市场深耕",
+            "短剧内容：微短剧爆发，新增长点",
+            "AI应用：AI生成内容、虚拟人等新技术探索"
+          ]
+        },
+        "price_prediction": {
+          "title": "股价预测依据",
+          "short_term": "筑底回升，亏损大幅收窄，盈利拐点已现",
+          "mid_term": "稳定增长，商业化能力提升，利润率改善",
+          "long_term": "谨慎乐观，需关注竞争格局和内容生态健康度",
+          "risks": [
+            "抖音竞争压力",
+            "用户增长放缓",
+            "内容监管风险"
+          ]
+        }
+      }
+    },
+    "timestamp": "2026-04-07T10:56:01.081845"
+  },
+  "quant": {
+    "agent_name": "quant_analyst",
+    "score": 75.0,
+    "confidence": 0.7,
+    "summary": "Quantitative analysis: buy",
+    "details": {
+      "signal": "buy",
+      "ma5": 45.464,
+      "rsi": 17.569412835685,
+      "trend": "down",
+      "volume_analysis": {
+        "avg_volume": 41890477.36666667,
+        "max_volume": 197726011,
+        "min_volume": 16026815,
+        "avg_amount": 2297601339.5333333,
+        "volume_trend": "缩量"
+      }
+    },
+    "timestamp": "2026-04-07T10:56:01.081808"
+  },
+  "news": {
+    "agent_name": "news_analyst",
+    "score": 55.0,
+    "confidence": 0.5,
+    "summary": "News sentiment neutral",
+    "details": {
+      "news_count": 0,
+      "product_updates": [
+        {
+          "title": "快手电商GMV持续增长",
+          "summary": "电商业务保持强劲增长势头，直播电商生态持续完善",
+          "date": "近期",
+          "impact": "positive",
+          "source": {
+            "name": "快手官网",
+            "url": "https://www.kuaishou.com/"
+          }
+        },
+        {
+          "title": "内容生态建设深化",
+          "summary": "扶持优质创作者，丰富内容供给，提升用户粘性和活跃度",
+          "date": "近期",
+          "impact": "positive",
+          "source": {
+            "name": "快手投资者关系",
+            "url": "https://ir.kuaishou.com/"
+          }
+        },
+        {
+          "title": "商业化变现能力提升",
+          "summary": "广告业务和直播打赏收入稳步增长，平台变现效率提升",
+          "date": "近期",
+          "impact": "positive",
+          "source": {
+            "name": "快手新闻中心",
+            "url": "https://www.kuaishou.com/news"
+          }
+        }
+      ],
+      "industry_trend": "稳定发展",
+      "market_sentiment": "中性",
+      "data_sources": [
+        {
+          "name": "美团官网",
+          "url": "https://www.meituan.com/",
+          "type": "官网"
+        },
+        {
+          "name": "美团投资者关系",
+          "url": "https://ir.meituan.com/",
+          "type": "官网"
+        },
+        {
+          "name": "快手官网",
+          "url": "https://www.kuaishou.com/",
+          "type": "官网"
+        },
+        {
+          "name": "快手投资者关系",
+          "url": "https://ir.kuaishou.com/",
+          "type": "官网"
+        },
+        {
+          "name": "美团微信公众号",
+          "url": "https://mp.weixin.qq.com/",
+          "type": "公众平台"
+        },
+        {
+          "name": "快手官方微博",
+          "url": "https://weibo.com/kuaishou",
+          "type": "公众平台"
+        }
+      ]
+    },
+    "timestamp": "2026-04-07T10:56:01.081859"
+  },
+  "risk": {
+    "agent_name": "risk_analyst",
+    "score": 40.0,
+    "confidence": 0.7,
+    "summary": "Risk level: medium",
+    "details": {
+      "risk_level": "medium",
+      "volatility": "moderate",
+      "war_impact": {
+        "overall_impact": "低",
+        "confidence": 0.8,
+        "business_exposure": "国内业务为主，国际业务占比较小",
+        "key_risks": [
+          {
+            "area": "内容生态",
+            "impact": "低风险",
+            "description": "平台内容审核严格，受国际舆论影响较小"
+          },
+          {
+            "area": "国际化战略",
+            "impact": "中等风险",
+            "description": "海外市场拓展计划可能因地缘政治放缓"
+          },
+          {
+            "area": "广告业务",
+            "impact": "低风险",
+            "description": "国内广告主稳定，受国际形势影响有限"
+          }
+        ],
+        "mitigation": "公司主要聚焦国内市场，国际局势对核心业务影响较小",
+        "data_sources": [
+          {
+            "name": "新华社国际新闻",
+            "url": "http://www.xinhuanet.com/world/",
+            "type": "官方媒体"
+          },
+          {
+            "name": "央视新闻",
+            "url": "https://news.cctv.com/world/",
+            "type": "官方媒体"
+          },
+          {
+            "name": "环球网",
+            "url": "https://world.huanqiu.com/",
+            "type": "新闻门户"
+          }
+        ],
+        "current_conflicts": [
+          {
+            "name": "俄乌冲突",
+            "status": "持续中",
+            "impact_level": "medium"
+          },
+          {
+            "name": "中东局势",
+            "status": "波动",
+            "impact_level": "low"
+          }
+        ]
+      }
+    },
+    "timestamp": "2026-04-07T10:56:01.081870"
+  },
+  "overall_score": 61.5,
+  "recommendation": "hold",
+  "risk_level": "medium",
+  "stock_history": [
+    {
+      "code": "01024.HK",
+      "date": "2026-02-20",
+      "open": 68.1,
+      "close": 66.5,
+      "high": 68.3,
+      "low": 66.15,
+      "volume": 18191244,
+      "amount": 1213908926.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-02-23",
+      "open": 68.6,
+      "close": 68.55,
+      "high": 69.2,
+      "low": 67.85,
+      "volume": 16026815,
+      "amount": 1100853685.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-02-24",
+      "open": 67.5,
+      "close": 66.65,
+      "high": 67.55,
+      "low": 65.5,
+      "volume": 36470646,
+      "amount": 2415728219.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-02-25",
+      "open": 66.9,
+      "close": 66.35,
+      "high": 67.6,
+      "low": 66.0,
+      "volume": 25693979,
+      "amount": 1710994138.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-02-26",
+      "open": 67.0,
+      "close": 63.6,
+      "high": 67.25,
+      "low": 63.6,
+      "volume": 47953773,
+      "amount": 3091404864.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-02-27",
+      "open": 63.6,
+      "close": 62.85,
+      "high": 64.1,
+      "low": 62.1,
+      "volume": 42879063,
+      "amount": 2701375596.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-02",
+      "open": 61.75,
+      "close": 60.75,
+      "high": 62.0,
+      "low": 60.05,
+      "volume": 47704329,
+      "amount": 2898027147.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-03",
+      "open": 61.25,
+      "close": 60.25,
+      "high": 61.8,
+      "low": 59.9,
+      "volume": 34870591,
+      "amount": 2115554259.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-04",
+      "open": 59.45,
+      "close": 59.55,
+      "high": 60.25,
+      "low": 57.9,
+      "volume": 40670155,
+      "amount": 2404026948.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-05",
+      "open": 60.85,
+      "close": 59.6,
+      "high": 61.55,
+      "low": 59.2,
+      "volume": 28402081,
+      "amount": 1711815238.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-06",
+      "open": 59.3,
+      "close": 61.45,
+      "high": 61.7,
+      "low": 59.2,
+      "volume": 35578752,
+      "amount": 2171929413.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-09",
+      "open": 58.05,
+      "close": 60.55,
+      "high": 60.8,
+      "low": 58.0,
+      "volume": 34975196,
+      "amount": 2088284026.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-10",
+      "open": 62.3,
+      "close": 61.4,
+      "high": 62.65,
+      "low": 60.6,
+      "volume": 33703532,
+      "amount": 2068376215.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-11",
+      "open": 62.2,
+      "close": 60.85,
+      "high": 62.5,
+      "low": 60.75,
+      "volume": 22914593,
+      "amount": 1402809438.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-12",
+      "open": 60.0,
+      "close": 60.2,
+      "high": 60.9,
+      "low": 59.2,
+      "volume": 18845973,
+      "amount": 1129342739.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-13",
+      "open": 59.55,
+      "close": 59.15,
+      "high": 60.45,
+      "low": 58.95,
+      "volume": 21726887,
+      "amount": 1294260813.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-16",
+      "open": 58.9,
+      "close": 60.0,
+      "high": 60.4,
+      "low": 58.25,
+      "volume": 25723198,
+      "amount": 1536178786.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-17",
+      "open": 60.4,
+      "close": 59.85,
+      "high": 61.8,
+      "low": 59.6,
+      "volume": 25172006,
+      "amount": 1530134153.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-18",
+      "open": 60.0,
+      "close": 59.0,
+      "high": 60.2,
+      "low": 58.55,
+      "volume": 30042411,
+      "amount": 1775584308.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-19",
+      "open": 57.0,
+      "close": 55.35,
+      "high": 57.2,
+      "low": 55.05,
+      "volume": 66666228,
+      "amount": 3723215265.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-20",
+      "open": 55.25,
+      "close": 53.8,
+      "high": 55.35,
+      "low": 53.2,
+      "volume": 47849082,
+      "amount": 2583363137.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-23",
+      "open": 52.3,
+      "close": 51.7,
+      "high": 53.1,
+      "low": 51.0,
+      "volume": 50563711,
+      "amount": 2622598812.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-24",
+      "open": 53.0,
+      "close": 52.8,
+      "high": 53.2,
+      "low": 51.45,
+      "volume": 38677919,
+      "amount": 2025846987.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-25",
+      "open": 53.75,
+      "close": 53.05,
+      "high": 54.35,
+      "low": 52.05,
+      "volume": 43780312,
+      "amount": 2322779503.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-26",
+      "open": 47.9,
+      "close": 45.6,
+      "high": 48.9,
+      "low": 45.14,
+      "volume": 197726011,
+      "amount": 9103750737.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-27",
+      "open": 45.0,
+      "close": 46.08,
+      "high": 46.6,
+      "low": 44.8,
+      "volume": 61294784,
+      "amount": 2822478875.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-30",
+      "open": 45.0,
+      "close": 45.02,
+      "high": 45.28,
+      "low": 44.2,
+      "volume": 50219454,
+      "amount": 2244910183.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-03-31",
+      "open": 45.46,
+      "close": 45.12,
+      "high": 46.12,
+      "low": 44.6,
+      "volume": 35425207,
+      "amount": 1600158694.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-04-01",
+      "open": 46.8,
+      "close": 46.2,
+      "high": 46.98,
+      "low": 45.88,
+      "volume": 42990782,
+      "amount": 1991195036.0
+    },
+    {
+      "code": "01024.HK",
+      "date": "2026-04-02",
+      "open": 45.8,
+      "close": 44.9,
+      "high": 46.06,
+      "low": 44.6,
+      "volume": 33975607,
+      "amount": 1527154046.0
+    }
+  ]
+}
