@@ -262,6 +262,19 @@
       "fundamental_score": 65.0,
       "news_score": 55.0,
       "risk_score": 40.0,
+      "actual_price": 88.0,
+      "validated": true,
+      "error_percentage": 2.57954545454545
+    },
+    {
+      "date": "2026-04-10",
+      "predicted_price": 88.66,
+      "recommendation": "hold",
+      "overall_score": 53.75,
+      "quant_score": 50.0,
+      "fundamental_score": 65.0,
+      "news_score": 55.0,
+      "risk_score": 40.0,
       "actual_price": null,
       "validated": false
     }
@@ -523,6 +536,19 @@
     {
       "date": "2026-04-09",
       "predicted_price": 47.91,
+      "recommendation": "hold",
+      "overall_score": 63.0,
+      "quant_score": 75.0,
+      "fundamental_score": 75.0,
+      "news_score": 55.0,
+      "risk_score": 40.0,
+      "actual_price": 45.02,
+      "validated": true,
+      "error_percentage": 6.419369169258092
+    },
+    {
+      "date": "2026-04-10",
+      "predicted_price": 46.19,
       "recommendation": "hold",
       "overall_score": 63.0,
       "quant_score": 75.0,
