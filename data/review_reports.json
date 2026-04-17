@@ -3756,11 +3756,103 @@
         "调整模型参数",
         "优化预测逻辑"
       ]
+    },
+    {
+      "id": "review_20260417_105637",
+      "stock_code": "03690.HK",
+      "period": "daily",
+      "generated_at": "2026-04-17T10:56:37.825440",
+      "date_range": {
+        "start": "2026-04-11",
+        "end": "2026-04-17"
+      },
+      "metrics": {
+        "accuracy": 98.61363636363637,
+        "prediction_count": 4,
+        "avg_error": 1.3863636363636351,
+        "correct_direction": 1,
+        "total_predictions": 1
+      },
+      "discrepancies": [],
+      "agent_feedback": [
+        {
+          "agent": "量化分析师",
+          "score_change": 3.7,
+          "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
+        },
+        {
+          "agent": "基本面分析师",
+          "score_change": -1.9,
+          "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
+        },
+        {
+          "agent": "新闻分析师",
+          "score_change": 5.0,
+          "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
+        },
+        {
+          "agent": "风险分析师",
+          "score_change": 0.9,
+          "suggestion": "加强对系统性风险的识别，提前预警市场波动"
+        }
+      ],
+      "suggestions": [
+        "优化各Agent之间的信息共享和协同决策能力"
+      ],
+      "action_items": [
+        "更新数据源配置"
+      ]
+    },
+    {
+      "id": "review_20260417_105637",
+      "stock_code": "01024.HK",
+      "period": "daily",
+      "generated_at": "2026-04-17T10:56:37.834349",
+      "date_range": {
+        "start": "2026-04-11",
+        "end": "2026-04-17"
+      },
+      "metrics": {
+        "accuracy": 97.13460684140382,
+        "prediction_count": 4,
+        "avg_error": 2.865393158596177,
+        "correct_direction": 1,
+        "total_predictions": 1
+      },
+      "discrepancies": [],
+      "agent_feedback": [
+        {
+          "agent": "量化分析师",
+          "score_change": 3.0,
+          "suggestion": "增加成交量分析权重，优化MA交叉信号判断逻辑"
+        },
+        {
+          "agent": "基本面分析师",
+          "score_change": -0.2,
+          "suggestion": "更及时地纳入财务报告数据，提高估值模型精度"
+        },
+        {
+          "agent": "新闻分析师",
+          "score_change": 2.6,
+          "suggestion": "提高对突发事件的响应速度，优化情感分析模型"
+        },
+        {
+          "agent": "风险分析师",
+          "score_change": -0.0,
+          "suggestion": "加强对系统性风险的识别，提前预警市场波动"
+        }
+      ],
+      "suggestions": [
+        "优化各Agent之间的信息共享和协同决策能力"
+      ],
+      "action_items": [
+        "更新数据源配置"
+      ]
     }
   ],
   "summary": {
-    "total_reports": 68,
-    "avg_accuracy": 68.76697296898321,
-    "last_updated": "2026-04-15T10:59:34.495681"
+    "total_reports": 70,
+    "avg_accuracy": 69.59860578708427,
+    "last_updated": "2026-04-17T10:56:37.835664"
   }
 }
